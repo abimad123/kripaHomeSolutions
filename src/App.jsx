@@ -33,9 +33,13 @@ function App() {
 
   const scrollToSection = useCallback((id) => {
     setTimeout(() => {
+      // Safe guard against empty hash
+      if (!id) return;
       const element = document.getElementById(id);
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' });
+      } else {
+        console.warn(`Attempted to scroll to #${id}, but element was not found in DOM.`);
       }
     }, 100);
   }, []);

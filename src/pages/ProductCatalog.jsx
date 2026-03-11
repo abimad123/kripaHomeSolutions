@@ -157,7 +157,7 @@ const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, com
             )}
           </AnimatePresence>
 
-          <main className="lg:w-3/4">
+          <main className="lg:w-3/4 w-full">
             <div className="flex flex-col items-center justify-between gap-6 p-4 mb-8 border border-slate-100 sm:flex-row bg-slate-50/50 dark:bg-white/[0.02] rounded-2xl dark:border-white/5">
               <div className="flex items-center gap-3">
                 <div className="flex items-center justify-center w-10 h-10 text-xs font-black rounded-full bg-brand-red/10 text-brand-red">{filteredAndSortedProducts.length}</div>

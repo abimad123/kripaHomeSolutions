@@ -2,10 +2,14 @@ import React, { useState, useEffect } from 'react';
 import { Menu, X, Sun, Moon, Home, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+// --- KEY CHANGE: Import the logo directly so Vite tracks it ---
+import logoImg from '/Kripalogo.png';
+
 const Navbar = ({ darkMode, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
+  const [activeSection, setActiveSection] = useState('home');
 
   useEffect(() => {
     const handleScroll = () => {
@@ -13,6 +17,32 @@ const Navbar = ({ darkMode, toggleTheme }) => {
     };
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // --- KEY CHANGE: IntersectionObserver to track active section ---
+  useEffect(() => {
+    const observers = [];
+    const sections = navLinks.map(link => link.href.substring(1));
+    
+    sections.forEach(sectionId => {
+      const element = document.getElementById(sectionId);
+      if (element) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                setActiveSection(sectionId);
+              }
+            });
+          },
+          { rootMargin: '-30% 0px -70% 0px' } // Trigger when element hits top 30% of viewport
+        );
+        observer.observe(element);
+        observers.push(observer);
+      }
+    });
+
+    return () => observers.forEach(observer => observer.disconnect());
   }, []);
 
   const navLinks = [
@@ -26,13 +56,19 @@ const Navbar = ({ darkMode, toggleTheme }) => {
   const handleLinkClick = (e, href) => {
     if (href.startsWith('http')) return;
     e.preventDefault();
-    window.location.hash = href;
+    
+    // Always trigger the hash explicitly even if we are already "on" it
+    if (window.location.hash !== href) {
+        window.location.hash = href;
+    }
+    
     setIsOpen(false);
     
     const id = href.substring(1);
     const element = document.getElementById(id);
     if (element) {
       element.scrollIntoView({ behavior: 'smooth' });
+      setActiveSection(id);
     }
   };
 
@@ -50,46 +86,64 @@ const Navbar = ({ darkMode, toggleTheme }) => {
         <div className="flex justify-between items-center">
           {/* Logo Section */}
            <a
-  href="#home"
-  onClick={(e) => handleLinkClick(e, '#home')}
-  className="flex items-center gap-3 cursor-pointer group"
->
-  <div className="relative flex flex-col items-center">
-    <img
-      src="/Kripalogo.png"
-      alt="Kripa Home Solutions"
-      className="h-14 w-auto transition-transform group-hover:scale-105"
-    />
-  </div>
-</a>
+            href="#home"
+            onClick={(e) => handleLinkClick(e, '#home')}
+            className="flex items-center gap-3 cursor-pointer group"
+          >
+            <div className="relative flex flex-col items-center">
+              <img
+                src={logoImg}
+                alt="Kripa Home Solutions"
+                className="h-14 w-auto transition-transform group-hover:scale-105 filter drop-shadow-md"
+              />
+            </div>
+          </a>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             <div className="flex items-center mr-4 space-x-1">
-              {navLinks.map((link) => (
-                <a 
-                  key={link.name} 
-                  href={link.href} 
-                  onMouseEnter={() => setHoveredLink(link.name)}
-                  onMouseLeave={() => setHoveredLink(null)}
-                  onClick={(e) => handleLinkClick(e, link.href)}
-                  className={`relative px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest transition-colors z-10 ${
-                    scrolled ? 'text-slate-600 dark:text-slate-300' : 'text-white'
-                  } hover:text-brand-red dark:hover:text-brand-red`}
-                >
-                  <span className="relative z-10">{link.name}</span>
-                  {hoveredLink === link.name && (
-                    <motion.div 
-                      layoutId="nav-pill"
-                      className="absolute inset-0 rounded-full bg-slate-100 dark:bg-white/10 z-0"
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      exit={{ opacity: 0 }}
-                      transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
-                    />
-                  )}
-                </a>
-              ))}
+              {navLinks.map((link) => {
+                const isActive = activeSection === link.href.substring(1);
+                
+                return (
+                  <a 
+                    key={link.name} 
+                    href={link.href} 
+                    onMouseEnter={() => setHoveredLink(link.name)}
+                    onMouseLeave={() => setHoveredLink(null)}
+                    onClick={(e) => handleLinkClick(e, link.href)}
+                    className={`relative px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest transition-colors z-10 ${
+                      isActive 
+                        ? 'text-brand-red dark:text-brand-red' 
+                        : scrolled 
+                          ? 'text-slate-600 dark:text-slate-300 hover:text-brand-red dark:hover:text-brand-red' 
+                          : 'text-white hover:text-brand-red'
+                    }`}
+                  >
+                    <span className="relative z-10">{link.name}</span>
+                    {hoveredLink === link.name && !isActive && (
+                      <motion.div 
+                        layoutId="nav-pill"
+                        className="absolute inset-0 rounded-full bg-slate-100 dark:bg-white/10 z-0"
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        exit={{ opacity: 0 }}
+                        transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
+                      />
+                    )}
+                    {/* Active state indicator */}
+                    {isActive && (
+                        <motion.div 
+                          layoutId="active-pill"
+                          className="absolute inset-0 rounded-full border-2 border-brand-red/20 dark:border-brand-red/40 bg-brand-red/5 z-0"
+                          initial={{ opacity: 0 }}
+                          animate={{ opacity: 1 }}
+                          transition={{ duration: 0.3 }}
+                        />
+                    )}
+                  </a>
+                );
+              })}
             </div>
             
             <div className={`flex items-center space-x-4 border-l pl-6 ${scrolled ? 'border-slate-200 dark:border-white/10' : 'border-white/20'}`}>
@@ -98,7 +152,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 className={`p-2.5 rounded-xl transition-all duration-300 ${
                   scrolled 
                     ? 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400' 
-                    : 'hover:bg-white/10 text-white'
+                    : 'hover:bg-white/20 text-white'
                 }`}
                 title="Toggle Theme"
               >
@@ -112,13 +166,13 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 className={`flex items-center gap-2 px-7 py-3 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-xl group overflow-hidden relative ${
                  scrolled 
                   ? 'bg-brand-red text-white hover:bg-red-700 shadow-brand-red/20' 
-                  : 'bg-white text-brand-red hover:bg-slate-100'
+                  : 'bg-white text-brand-red hover:bg-slate-100 shadow-white/10'
                }`}>
                  <span className="relative z-10 flex items-center gap-2">
                     <MapPin size={14} className="group-hover:animate-bounce" />
                     Visit Store
                  </span>
-                 <div className="absolute inset-0 transition-transform duration-1000 -translate-x-full bg-linear-to-r from-transparent via-white/20 to-transparent group-hover:translate-x-full" />
+                 <div className="absolute inset-0 transition-transform duration-1000 -translate-x-full bg-linear-to-r from-transparent via-black/5 to-transparent group-hover:translate-x-full" />
               </a>
             </div>
           </div>
@@ -127,13 +181,13 @@ const Navbar = ({ darkMode, toggleTheme }) => {
           <div className="flex items-center space-x-2 md:hidden">
              <button 
                 onClick={toggleTheme}
-                className={`p-2.5 rounded-xl ${scrolled ? 'text-slate-600 dark:text-white bg-slate-50 dark:bg-white/5' : 'text-white bg-white/10'}`}
+                className={`p-2.5 rounded-xl ${scrolled ? 'text-slate-600 dark:text-white bg-slate-50 dark:bg-white/5' : 'text-white bg-white/20'}`}
               >
                 {darkMode ? <Sun size={20} className="text-brand-gold" /> : <Moon size={20} />}
               </button>
             <button 
               onClick={() => setIsOpen(!isOpen)}
-              className={`p-2.5 rounded-xl transition-all ${scrolled ? 'text-brand-navy dark:text-white bg-slate-50 dark:bg-white/5' : 'text-white bg-white/10'}`}
+              className={`p-2.5 rounded-xl transition-all ${scrolled ? 'text-brand-navy dark:text-white bg-slate-50 dark:bg-white/5' : 'text-white bg-white/20'}`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>

@@ -27,6 +27,7 @@ const Hero = () => {
               src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2500&auto=format&fit=crop" 
               alt="Kripa Home Solutions" 
               className="object-cover w-full h-full"
+              fetchPriority="high"
             />
         </motion.div>
         
