@@ -1,6 +1,7 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Home, ArrowUp, Instagram, Facebook, Youtube, Twitter } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { Link } from 'react-router-dom';
 
 const Footer = () => {
   const scrollToTop = () => {
@@ -37,17 +38,15 @@ const Footer = () => {
           
           {/* Brand Identity */}
           <div className="space-y-10">
-                      <a  href="#home"
-  onClick={(e) => handleLinkClick(e, '#home')}
-  className="flex items-center gap-3 cursor-pointer group"> 
-  <div className="relative flex flex-col items-center">
-    <img
-      src="/Kripalogo.png" 
-      alt="Kripa Home Solutions"
-      className="h-20 w-auto transition-transform group-hover:scale-105"
-    />
-  </div>
-</a>
+           <Link to="/" onClick={scrollToTop} className="flex items-center gap-3 cursor-pointer group"> 
+              <div className="relative flex flex-col items-center">
+                <img
+                  src="/Kripalogo.png" 
+                  alt="Kripa Home Solutions"
+                  className="h-20 w-auto transition-transform group-hover:scale-105"
+                />
+              </div>
+           </Link>
             <p className="max-w-xs text-sm leading-relaxed text-slate-500">
               Redefining luxury home experiences since 1995. We bring world-class hardware, paints, and kitchen solutions to your doorstep.
             </p>
@@ -78,10 +77,10 @@ const Footer = () => {
             <ul className="space-y-4 text-sm font-medium">
               {['Showroom Tour', 'Trending Products', 'Brand Partners', 'Expert Video Series', 'Customer Stories', 'Contact Support'].map((item) => (
                 <li key={item}>
-                  <a href="#" className="flex items-center gap-2 transition-all hover:text-brand-gold group">
+                  <Link to="#" className="flex items-center gap-2 transition-all hover:text-brand-gold group">
                     <span className="w-0 h-px transition-all bg-brand-gold group-hover:w-4"></span>
                     {item}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -149,11 +148,11 @@ const Footer = () => {
           <div className="flex flex-col items-center gap-2 md:items-start">
             <p className="text-[10px] uppercase tracking-[0.3em] font-black text-slate-700">© 2026 Kripa Home Solutions</p>
             <div className="flex gap-6 text-[10px] font-bold text-slate-500 uppercase tracking-widest">
-            <a href="#privacy-policy" className="hover:text-brand-red transition-colors">
-    Privacy Policy
-  </a>
-              <a href="#" className="transition-colors hover:text-brand-gold">Terms</a>
-              <a href="#" className="transition-colors hover:text-brand-gold">Sitemap</a>
+              <Link to="/privacy-policy" className="hover:text-brand-red transition-colors">
+                Privacy Policy
+              </Link>
+              <Link to="#" className="transition-colors hover:text-brand-gold">Terms</Link>
+              <Link to="#" className="transition-colors hover:text-brand-gold">Sitemap</Link>
             </div>
           </div>
 
@@ -168,7 +167,6 @@ const Footer = () => {
             </div>
             <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-white group-hover:text-brand-gold transition-colors">Top</span>
           </motion.button>
-
         </div>
       </div>
     </footer>

@@ -54,15 +54,15 @@ const Socials = () => {
               See Us <span className="italic text-transparent bg-clip-text bg-linear-to-r from-brand-red to-brand-gold">In Action</span>
             </h2>
           </div>
-          
+
           <div className="flex gap-4">
-            <button 
+            <button
               onClick={() => scroll('left')}
               className="p-4 transition-all duration-300 border shadow-lg rounded-2xl bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-600 dark:text-white hover:bg-brand-red hover:text-white hover:border-brand-red"
             >
               <ChevronLeft size={24} />
             </button>
-            <button 
+            <button
               onClick={() => scroll('right')}
               className="p-4 transition-all duration-300 border shadow-lg rounded-2xl bg-slate-100 dark:bg-white/5 border-slate-200 dark:border-white/10 text-slate-600 dark:text-white hover:bg-brand-red hover:text-white hover:border-brand-red"
             >
@@ -72,26 +72,26 @@ const Socials = () => {
         </div>
 
         {/* Horizontal Reels Slider */}
-        <div 
+        <div
           ref={scrollContainerRef}
           className="flex gap-6 px-4 pb-12 overflow-x-auto hide-scrollbar snap-x snap-mandatory"
           style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
         >
           {reels.map((reel) => (
-            <motion.div 
+            <motion.div
               key={reel.id}
               whileHover={{ y: -10 }}
               className="relative flex-shrink-0 w-[300px] aspect-[9/16] rounded-[2.5rem] overflow-hidden group cursor-pointer shadow-xl snap-center border border-slate-200 dark:border-white/10"
             >
-              <img 
-                src={reel.thumb} 
-                alt="Reel" 
+              <img
+                src={reel.thumb}
+                alt="Reel"
                 className="object-cover w-full h-full duration-700 transition-transform group-hover:scale-110"
               />
-              
+
               {/* Overlay Gradient */}
               <div className="absolute inset-0 transition-opacity duration-300 opacity-60 bg-gradient-to-t from-black/90 via-black/20 to-transparent group-hover:opacity-80"></div>
-              
+
               {/* Top Metrics */}
               <div className="absolute z-20 flex justify-between items-center top-6 left-6 right-6">
                 <div className="flex items-center gap-2 px-3 py-1.5 bg-black/40 backdrop-blur-md rounded-full border border-white/20">
@@ -119,7 +119,7 @@ const Socials = () => {
                   </div>
                   <div className="flex items-center gap-1.5 text-white">
                     <MessageCircle size={16} />
-                    <span className="text-xs font-bold">{Math.floor(parseInt(reel.likes)/4)}</span>
+                    <span className="text-xs font-bold">{Math.floor(parseInt(reel.likes) / 4)}</span>
                   </div>
                 </div>
                 <p className="text-sm font-medium leading-relaxed text-white transition-transform duration-300 transform translate-y-4 line-clamp-2 group-hover:translate-y-0 delay-75">
@@ -140,7 +140,7 @@ const Socials = () => {
             { name: 'YouTube', handle: 'Kripa Home Solutions', icon: <Youtube />, color: 'hover:text-red-600', glow: 'hover:shadow-red-600/20' },
             { name: 'Facebook', handle: 'kripahome', icon: <Facebook />, color: 'hover:text-blue-600', glow: 'hover:shadow-blue-600/20' }
           ].map((social) => (
-            <motion.a 
+            <motion.a
               key={social.name}
               href="#"
               whileHover={{ scale: 1.05 }}

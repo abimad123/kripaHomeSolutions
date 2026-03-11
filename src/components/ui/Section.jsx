@@ -5,7 +5,7 @@ export const Section = ({ children, className = '', id, darkBg = false }) => {
   return (
     <section 
       id={id} 
-      className={`py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden ${darkBg ? 'bg-white dark:bg-slate-800' : 'bg-transparent'} ${className}`}
+      className={`py-16 md:py-24 px-4 sm:px-6 lg:px-8 overflow-hidden ${darkBg ? 'bg-white dark:bg-black' : 'bg-transparent'} ${className}`}
     >
       <motion.div
         initial={{ opacity: 0, y: 20 }}

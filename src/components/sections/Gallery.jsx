@@ -81,9 +81,9 @@ const Gallery = () => {
               Exhibition
             </span>
           </div>
-          <h2 className="text-4xl md:text-5xl font-serif font-black text-brand-navy dark:text-white leading-tight">
+          <h2 className="text-4xl font-black leading-tight font-serif md:text-6xl text-brand-navy dark:text-white">
             Store <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-brand-red to-brand-gold italic">
+            <span className="italic text-transparent bg-clip-text bg-linear-to-r from-brand-red to-brand-gold">
               Gallery
             </span>
           </h2>

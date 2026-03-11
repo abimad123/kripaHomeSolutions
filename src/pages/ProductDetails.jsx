@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, Home, MessageSquare, ArrowLeft, Star, ShieldCheck, Truck, Share2, Link as LinkIcon, Layers, Info } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Section } from '../components/ui/Section';
 
 // Data reused for demonstration; in a real app this would be in a shared store or API
@@ -63,6 +64,7 @@ const catalogProducts = [
 
 const ProductDetails = ({ productId, onEnquire, compareList, onToggleCompare }) => {
   const [copied, setCopied] = useState(false);
+  const navigate = useNavigate();
   
   const product = useMemo(() => 
     catalogProducts.find(p => p.id === productId), 
@@ -74,7 +76,7 @@ const ProductDetails = ({ productId, onEnquire, compareList, onToggleCompare }) 
         <div className="text-center">
           <h2 className="mb-4 text-3xl font-black font-serif">Product Not Found</h2>
           <button 
-            onClick={() => window.location.hash = '#products'}
+            onClick={() => navigate('/products')}
             className="flex items-center gap-2 mx-auto font-bold text-brand-red hover:underline"
           >
             <ArrowLeft size={18} /> Back to Catalog
@@ -104,11 +106,11 @@ const ProductDetails = ({ productId, onEnquire, compareList, onToggleCompare }) 
       <div className="py-3 border-b bg-slate-50 dark:bg-brand-surface border-slate-200 dark:border-white/5">
         <div className="max-w-[1400px] mx-auto px-4">
           <nav className="flex items-center gap-2 text-[10px] font-black uppercase tracking-widest text-slate-500">
-            <a href="#home" className="flex items-center gap-1 transition-colors hover:text-brand-red">
+            <Link to="/" className="flex items-center gap-1 transition-colors hover:text-brand-red">
               <Home size={12} />
-            </a>
+            </Link>
             <ChevronRight size={12} className="text-slate-300" />
-            <a href="#products" className="transition-colors hover:text-brand-red">Catalog</a>
+            <Link to="/products" className="transition-colors hover:text-brand-red">Catalog</Link>
             <ChevronRight size={12} className="text-slate-300" />
             <span className="truncate max-w-[200px] text-brand-navy dark:text-white">{product.name}</span>
           </nav>

@@ -1,6 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Search, Filter, ChevronDown, MessageSquare, Star, LayoutGrid, List, RotateCcw, Layers, Check, ArrowRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const catalogProducts = [
   { 
@@ -69,6 +70,7 @@ const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, com
   const [viewMode, setViewMode] = useState('grid');
   const [priceRange, setPriceRange] = useState(500);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (initialCategory) {
@@ -240,7 +242,7 @@ const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, com
                           </div>
 
                           <h3 
-                            onClick={() => onViewDetails(product.id)} 
+                            onClick={() => navigate(`/products/${product.id}`)} 
                             className="mb-2 text-xl font-black leading-tight transition-colors cursor-pointer font-serif text-brand-navy dark:text-white group-hover:text-brand-red line-clamp-1"
                           >
                             {product.name}
@@ -278,7 +280,7 @@ const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, com
                           {/* Action Buttons Section */}
                           <div className="flex items-center gap-3 mt-auto">
                             <button 
-                              onClick={() => onViewDetails(product.id)} 
+                              onClick={() => navigate(`/products/${product.id}`)} 
                               className="flex items-center justify-center flex-1 gap-2 px-4 py-4 text-[10px] font-black tracking-widest uppercase transition-all bg-white border border-slate-200 rounded-2xl dark:bg-brand-surface dark:border-white/10 text-brand-navy dark:text-white hover:bg-slate-50 dark:hover:bg-white/5 group/btn"
                             >
                               Details <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-1" />

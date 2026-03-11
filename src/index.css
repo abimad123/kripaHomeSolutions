@@ -10,8 +10,8 @@
   /* Your Colors */
   --color-brand-red: #E31E24;
   --color-brand-gold: #D4AF37;
-  --color-brand-dark: #0f172a; 
-  --color-brand-surface: #1e293b;
+  --color-brand-dark: #000000; 
+  --color-brand-surface: #0a0a0a;
 }
 
 @layer base {

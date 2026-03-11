@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Sun, Moon, Home, MapPin } from 'lucide-react';
+import { Menu, X, Sun, Moon, MapPin } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 // --- KEY CHANGE: Import the logo directly so Vite tracks it ---
 import logoImg from '/Kripalogo.png';
@@ -9,7 +10,9 @@ const Navbar = ({ darkMode, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
-  const [activeSection, setActiveSection] = useState('home');
+  
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,58 +22,69 @@ const Navbar = ({ darkMode, toggleTheme }) => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // --- KEY CHANGE: IntersectionObserver to track active section ---
-  useEffect(() => {
-    const observers = [];
-    const sections = navLinks.map(link => link.href.substring(1));
-    
-    sections.forEach(sectionId => {
-      const element = document.getElementById(sectionId);
-      if (element) {
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach(entry => {
-              if (entry.isIntersecting) {
-                setActiveSection(sectionId);
-              }
-            });
-          },
-          { rootMargin: '-30% 0px -70% 0px' } // Trigger when element hits top 30% of viewport
-        );
-        observer.observe(element);
-        observers.push(observer);
-      }
-    });
+  // Determine active section based on current path
+  const getActiveTab = () => {
+    const path = location.pathname;
+    if (path === '/') {
+       // Since categories is on the home page, check hash logic lightly or just treat home as home.
+       if (location.hash === '#categories') return 'Categories';
+       return 'Home';
+    }
+    if (path === '/about') return 'About Us';
+    if (path.startsWith('/products')) return 'Products';
+    if (path === '/contact') return 'Contact Us';
+    return '';
+  };
 
-    return () => observers.forEach(observer => observer.disconnect());
-  }, []);
+  const activeSection = getActiveTab();
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
-    { name: 'About Us', href: '#about' },
-    { name: 'Products', href: '#products' },
-    { name: 'Categories', href: '#categories' },
-    { name: 'Contact Us', href: '#contact' },
+    { name: 'Home', path: '/' },
+    { name: 'About Us', path: '/about' },
+    { name: 'Products', path: '/products' },
+    { name: 'Categories', path: '/#categories' },
+    { name: 'Contact Us', path: '/contact' },
   ];
 
-  const handleLinkClick = (e, href) => {
-    if (href.startsWith('http')) return;
+  const handleLinkClick = (e, link) => {
     e.preventDefault();
-    
-    // Always trigger the hash explicitly even if we are already "on" it
-    if (window.location.hash !== href) {
-        window.location.hash = href;
-    }
-    
     setIsOpen(false);
     
-    const id = href.substring(1);
-    const element = document.getElementById(id);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
-      setActiveSection(id);
+    if (link.path.startsWith('/#')) {
+        // Handle in-page hash scroll for categories
+        const targetId = link.path.substring(2);
+        
+        if (location.pathname !== '/') {
+           // We are not on the homepage. Navigate to home, then let effect handle scroll, or just navigate to / with hash.
+           navigate(link.path);
+        } else {
+           // We are on homepage, scroll to it
+           const element = document.getElementById(targetId);
+           if (element) {
+              element.scrollIntoView({ behavior: 'smooth' });
+           } else {
+              // Fallback just in case
+              navigate(link.path);
+           }
+        }
+    } else {
+        // Standard navigation
+        navigate(link.path);
     }
   };
+
+  // Effect to handle scrolling on mount if there's a hash (e.g. arriving from /about to /#categories)
+  useEffect(() => {
+     if (location.pathname === '/' && location.hash) {
+         const targetId = location.hash.substring(1);
+         setTimeout(() => {
+            const element = document.getElementById(targetId);
+            if (element) {
+               element.scrollIntoView({ behavior: 'smooth' });
+            }
+         }, 100);
+     }
+  }, [location]);
 
   const googleMapsUrl = "https://maps.app.goo.gl/MkVkY24tLqHMW2cDA";
 
@@ -85,9 +99,9 @@ const Navbar = ({ darkMode, toggleTheme }) => {
       <div className="max-w-[1400px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center">
           {/* Logo Section */}
-           <a
-            href="#home"
-            onClick={(e) => handleLinkClick(e, '#home')}
+           <Link
+            to="/"
+            onClick={() => setIsOpen(false)}
             className="flex items-center gap-3 cursor-pointer group"
           >
             <div className="relative flex flex-col items-center">
@@ -97,22 +111,22 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 className="h-14 w-auto transition-transform group-hover:scale-105 filter drop-shadow-md"
               />
             </div>
-          </a>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-1">
             <div className="flex items-center mr-4 space-x-1">
               {navLinks.map((link) => {
-                const isActive = activeSection === link.href.substring(1);
+                const isActive = activeSection === link.name;
                 
                 return (
                   <a 
                     key={link.name} 
-                    href={link.href} 
+                    href={link.path} 
                     onMouseEnter={() => setHoveredLink(link.name)}
                     onMouseLeave={() => setHoveredLink(null)}
-                    onClick={(e) => handleLinkClick(e, link.href)}
-                    className={`relative px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest transition-colors z-10 ${
+                    onClick={(e) => handleLinkClick(e, link)}
+                    className={`relative px-5 py-2.5 rounded-full font-bold text-xs uppercase tracking-widest transition-colors z-10 cursor-pointer ${
                       isActive 
                         ? 'text-brand-red dark:text-brand-red' 
                         : scrolled 
@@ -208,8 +222,8 @@ const Navbar = ({ darkMode, toggleTheme }) => {
               {navLinks.map((link) => (
                 <a
                   key={link.name}
-                  href={link.href}
-                  onClick={(e) => handleLinkClick(e, link.href)}
+                  href={link.path}
+                  onClick={(e) => handleLinkClick(e, link)}
                   className="block px-4 py-4 text-sm font-black tracking-widest uppercase transition-all rounded-2xl text-slate-700 dark:text-slate-100 hover:text-brand-red hover:bg-slate-50 dark:hover:bg-white/5"
                 >
                   {link.name}

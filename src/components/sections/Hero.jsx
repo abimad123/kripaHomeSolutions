@@ -1,13 +1,13 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, MapPin } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
+  const navigate = useNavigate();
+
   const scrollToCatalog = () => {
-    const catalogSection = document.getElementById('categories');
-    if (catalogSection) {
-      catalogSection.scrollIntoView({ behavior: 'smooth' });
-    }
+     navigate('/products');
   };
 
   const openVirtualTour = () => {
