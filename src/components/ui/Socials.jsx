@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Section } from './ui/Section';
+import { Section } from './Section';
 import { Instagram, Facebook, Youtube, ChevronLeft, ChevronRight, Play, Heart, MessageCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 

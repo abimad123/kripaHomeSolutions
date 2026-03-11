@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, Home, MessageSquare, ArrowLeft, Star, ShieldCheck, Truck, Share2, Link as LinkIcon, Layers, Info } from 'lucide-react';
-import { Section } from './ui/Section';
+import { Section } from '../components/ui/Section';
 
 // Data reused for demonstration; in a real app this would be in a shared store or API
 const catalogProducts = [

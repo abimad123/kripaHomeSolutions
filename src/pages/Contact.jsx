@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Section } from './ui/Section';
+import { Section } from '../components/ui/Section';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
 

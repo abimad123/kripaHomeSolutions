@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Section } from './ui/Section';
+import { Section } from '../ui/Section';
 import { Play, Clock, Share2, Youtube } from 'lucide-react';
 
 // --- CONFIGURATION ---

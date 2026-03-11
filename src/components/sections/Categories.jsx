@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section } from './ui/Section';
+import { Section } from '../ui/Section';
 import { motion } from 'framer-motion';
 import { Wrench, PaintBucket, Utensils, Lightbulb, Bath, BrickWall, ArrowRight, ArrowUpRight } from 'lucide-react';
 

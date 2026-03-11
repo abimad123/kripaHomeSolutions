@@ -1,5 +1,5 @@
 import React, { useRef } from 'react';
-import { Section } from './ui/Section';
+import { Section } from '../ui/Section';
 import {
   ChevronLeft,
   ChevronRight,

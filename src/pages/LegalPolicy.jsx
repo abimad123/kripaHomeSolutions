@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section, SectionHeader } from './ui/Section';
+import { Section, SectionHeader } from '../components/ui/Section';
 import { motion } from 'framer-motion';
 import { Shield, Lock, Eye, Server, MapPin, Mail, Phone } from 'lucide-react';
 

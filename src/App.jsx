@@ -1,25 +1,25 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import Navbar from './components/Navbar';
-import Hero from './components/Hero';
-import Categories from './components/Categories';
-import FeaturedProducts from './components/FeaturedProducts';
-import WhyChooseUs from './components/WhyChooseUs';
-import VideoSeries from './components/VideoSeries';
-import Brands from './components/Brands';
-import Testimonials from './components/Testimonials';
-import Gallery from './components/Gallery';
-import Socials from './components/Socials';
-import Contact from './components/Contact';
-import About from './components/About';
-import ProductCatalog from './components/ProductCatalog';
-import ProductDetails from './components/ProductDetails';
-import ComparisonModal from './components/ComparisonModal';
-import Footer from './components/Footer';
+import Navbar from './components/layout/Navbar';
+import Hero from './components/sections/Hero';
+import Categories from './components/sections/Categories';
+import FeaturedProducts from './components/sections/FeaturedProducts';
+import WhyChooseUs from './components/sections/WhyChooseUs';
+import VideoSeries from './components/sections/VideoSeries';
+import Brands from './components/sections/Brands';
+import Testimonials from './components/sections/Testimonials';
+import Gallery from './components/sections/Gallery';
+import Socials from './components/ui/Socials';
+import Contact from './pages/Contact';
+import About from './pages/About';
+import ProductCatalog from './pages/ProductCatalog';
+import ProductDetails from './pages/ProductDetails';
+import ComparisonModal from './components/ui/ComparisonModal';
+import Footer from './components/layout/Footer';
 import { Layers, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 // --- KEY CHANGE 1: Import from the renamed file ---
-import PrivacyPolicy from './components/LegalPolicy'; 
+import PrivacyPolicy from './pages/LegalPolicy'; 
 
 function App() {
   const [darkMode, setDarkMode] = useState(false);

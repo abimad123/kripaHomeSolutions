@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section } from './ui/Section';
+import { Section } from '../ui/Section';
 import { Quote, Star, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
 

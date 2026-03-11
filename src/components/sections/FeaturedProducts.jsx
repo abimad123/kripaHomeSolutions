@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Section } from './ui/Section';
+import { Section } from '../ui/Section';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Eye, Heart, ArrowRight, Layers, MessageSquare } from 'lucide-react';
 

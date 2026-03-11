@@ -1,5 +1,5 @@
 import React from 'react';
-import { Section } from './ui/Section';
+import { Section } from '../ui/Section';
 import { motion } from 'framer-motion';
 
 // Replace these URLs with your actual local paths if needed
