@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowRight, Play, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const navigate = useNavigate();
+  const [isImageLoaded, setIsImageLoaded] = useState(false);
 
   const scrollToCatalog = () => {
      navigate('/products');
@@ -21,13 +22,19 @@ const Hero = () => {
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
-          className="w-full h-full"
+          className={`w-full h-full will-change-transform ${!isImageLoaded ? 'bg-slate-800/60 animate-pulse' : 'bg-black'}`}
         >
+             {!isImageLoaded && (
+               <div className="absolute inset-0 flex items-center justify-center z-10">
+                 <div className="w-16 h-16 border-4 border-brand-red/20 border-t-brand-red rounded-full animate-spin"></div>
+               </div>
+             )}
              <img 
-              src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=80&w=2500&auto=format&fit=crop" 
+              src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=75&w=1920&auto=format&fit=crop" 
               alt="Kripa Home Solutions" 
-              className="object-cover w-full h-full"
+              className={`object-cover w-full h-full transition-opacity duration-1000 ease-in-out ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
               fetchPriority="high"
+              onLoad={() => setIsImageLoaded(true)}
             />
         </motion.div>
         
@@ -42,8 +49,8 @@ const Hero = () => {
           <motion.div 
              initial={{ opacity: 0, x: -50 }}
              animate={{ opacity: 1, x: 0 }}
-             transition={{ duration: 0.8 }}
-             className="max-w-3xl lg:w-3/5"
+             transition={{ duration: 0.8, delay: 0.2 }}
+             className="max-w-3xl lg:w-3/5 will-change-transform"
           >
             <div className="flex items-center gap-3 mb-6">
                 <div className="h-0.5 w-12 bg-brand-gold"></div>
@@ -95,8 +102,8 @@ const Hero = () => {
           <motion.div 
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ delay: 0.4, duration: 0.8 }}
-            className="hidden relative lg:block lg:w-2/5"
+            transition={{ delay: 0.6, duration: 0.8 }}
+            className="hidden relative lg:block lg:w-2/5 will-change-transform"
           >
              <div className="relative z-10 p-8 border shadow-2xl bg-white/10 backdrop-blur-xl border-white/20 rounded-3xl">
                 <div className="grid grid-cols-2 gap-8">

@@ -10,6 +10,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const [hoveredLink, setHoveredLink] = useState(null);
+  const [isLogoLoaded, setIsLogoLoaded] = useState(false);
   
   const location = useLocation();
   const navigate = useNavigate();
@@ -104,11 +105,15 @@ const Navbar = ({ darkMode, toggleTheme }) => {
             onClick={() => setIsOpen(false)}
             className="flex items-center gap-3 cursor-pointer group"
           >
-            <div className="relative flex flex-col items-center">
+            <div className="relative flex flex-col justify-center min-h-[56px] min-w-[120px]">
+              {!isLogoLoaded && (
+                <div className="absolute inset-0 bg-slate-200/20 dark:bg-slate-800/50 animate-pulse rounded-lg"></div>
+              )}
               <img
                 src={logoImg}
                 alt="Kripa Home Solutions"
-                className="h-14 w-auto transition-transform group-hover:scale-105 filter drop-shadow-md"
+                onLoad={() => setIsLogoLoaded(true)}
+                className={`h-14 w-auto transition-all group-hover:scale-105 filter drop-shadow-md duration-500 ${isLogoLoaded ? 'opacity-100 relative' : 'opacity-0 absolute'}`}
               />
             </div>
           </Link>

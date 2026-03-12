@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Section } from '../ui/Section';
 import { motion } from 'framer-motion';
 import { Wrench, PaintBucket, Utensils, Lightbulb, Bath, BrickWall, ArrowRight, ArrowUpRight } from 'lucide-react';
@@ -73,6 +73,12 @@ const itemVariants = {
 };
 
 const Categories = ({ onCategorySelect }) => {
+  const [loadedImages, setLoadedImages] = useState({});
+
+  const handleImageLoad = (id) => {
+    setLoadedImages(prev => ({ ...prev, [id]: true }));
+  };
+
   return (
     <Section id="categories" className="relative">
       <div className="flex flex-col items-end justify-between gap-8 px-2 mb-12 md:flex-row">
@@ -106,11 +112,17 @@ const Categories = ({ onCategorySelect }) => {
             `}
           >
             {/* Background Image with Zoom Effect */}
-            <div className="absolute inset-0 bg-slate-900">
+            <div className={`absolute inset-0 ${!loadedImages[category.id] ? 'bg-slate-800/80 animate-pulse' : 'bg-slate-900'}`}>
+              {!loadedImages[category.id] && (
+                <div className="absolute inset-0 flex items-center justify-center">
+                   <div className="w-8 h-8 md:w-10 md:h-10 border-4 border-white/10 border-t-white/50 rounded-full animate-spin"></div>
+                </div>
+              )}
               <img
                 src={category.image}
                 alt={category.displayName}
-                className="object-cover w-full h-full duration-700 ease-out transition-transform opacity-80 group-hover:scale-110 group-hover:opacity-60"
+                onLoad={() => handleImageLoad(category.id)}
+                className={`object-cover w-full h-full duration-700 ease-out transition-all group-hover:scale-110 group-hover:opacity-60 ${loadedImages[category.id] ? 'opacity-80' : 'opacity-0 scale-105'}`}
               />
             </div>
 

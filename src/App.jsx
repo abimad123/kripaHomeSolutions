@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
@@ -10,11 +10,13 @@ import Brands from './components/sections/Brands';
 import Testimonials from './components/sections/Testimonials';
 import Gallery from './components/sections/Gallery';
 import Socials from './components/ui/Socials';
-import Contact from './pages/Contact';
-import About from './pages/About';
-import ProductCatalog from './pages/ProductCatalog';
-import ProductDetails from './pages/ProductDetails';
-import PrivacyPolicy from './pages/LegalPolicy'; 
+
+// Lazy-loaded routes for code splitting
+const Contact = lazy(() => import('./pages/Contact'));
+const About = lazy(() => import('./pages/About'));
+const ProductCatalog = lazy(() => import('./pages/ProductCatalog'));
+const ProductDetails = lazy(() => import('./pages/ProductDetails'));
+const PrivacyPolicy = lazy(() => import('./pages/LegalPolicy'));
 import ComparisonModal from './components/ui/ComparisonModal';
 import Footer from './components/layout/Footer';
 import { Layers, X } from 'lucide-react';
@@ -28,6 +30,14 @@ const ScrollToTop = () => {
   }, [pathname]);
   return null;
 };
+
+// --- Full Page Loader Fallback (For Suspense) ---
+const PageLoader = () => (
+  <div className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-brand-dark">
+    <div className="w-16 h-16 border-4 rounded-full border-brand-red/20 border-t-brand-red animate-spin"></div>
+    <span className="mt-4 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400 animate-pulse">Loading Experience...</span>
+  </div>
+);
 
 // --- Main App Component ---
 function App() {
@@ -78,65 +88,67 @@ function App() {
         <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />
         
         <main className="flex-grow pt-0 transition-opacity duration-500">
-          <Routes>
-             {/* Main Landing Page */}
-             <Route path="/" element={
-                <div className="duration-700 animate-in fade-in">
-                  <Hero />
-                  <Categories />
-                  <FeaturedProducts 
-                    onEnquire={handleProductEnquiry}
-                    compareList={compareList}
-                    onToggleCompare={toggleCompare}
-                  />
-                  <WhyChooseUs />
-                  <VideoSeries />
-                  <Brands />
-                  <Testimonials />
-                  <Gallery />
-                  <Socials />
-                </div>
-             } />
+          <Suspense fallback={<PageLoader />}>
+            <Routes>
+               {/* Main Landing Page */}
+               <Route path="/" element={
+                  <div className="duration-700 animate-in fade-in">
+                    <Hero />
+                    <Categories />
+                    <FeaturedProducts 
+                      onEnquire={handleProductEnquiry}
+                      compareList={compareList}
+                      onToggleCompare={toggleCompare}
+                    />
+                    <WhyChooseUs />
+                    <VideoSeries />
+                    <Brands />
+                    <Testimonials />
+                    <Gallery />
+                    <Socials />
+                  </div>
+               } />
 
-             {/* Individual Pages */}
-             <Route path="/about" element={
-               <div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4">
-                 <About />
-               </div>
-             } />
-             
-             <Route path="/contact" element={
-               <div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4">
-                 <Contact prefill={enquiryPrefill} />
-               </div>
-             } />
+               {/* Individual Pages */}
+               <Route path="/about" element={
+                 <div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4">
+                   <About />
+                 </div>
+               } />
+               
+               <Route path="/contact" element={
+                 <div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4">
+                   <Contact prefill={enquiryPrefill} />
+                 </div>
+               } />
 
-             <Route path="/products" element={
-               <div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4">
-                 <ProductCatalog 
-                   onEnquire={handleProductEnquiry}
-                   compareList={compareList}
-                   onToggleCompare={toggleCompare}
-                 />
-               </div>
-             } />
+               <Route path="/products" element={
+                 <div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4">
+                   <ProductCatalog 
+                     onEnquire={handleProductEnquiry}
+                     compareList={compareList}
+                     onToggleCompare={toggleCompare}
+                   />
+                 </div>
+               } />
 
-             <Route path="/products/:id" element={
-               <div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4">
-                 <ProductDetails 
-                   onEnquire={handleProductEnquiry}
-                   compareList={compareList}
-                   onToggleCompare={toggleCompare}
-                 />
-               </div>
-             } />
+               <Route path="/products/:id" element={
+                 <div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4">
+                   <ProductDetails 
+                     onEnquire={handleProductEnquiry}
+                     compareList={compareList}
+                     onToggleCompare={toggleCompare}
+                   />
+                 </div>
+               } />
 
-             <Route path="/privacy-policy" element={
-               <div className="min-h-screen pt-20 duration-700 animate-in fade-in">
-                 <PrivacyPolicy />
-               </div>
-             } />
-          </Routes>
+               <Route path="/privacy-policy" element={
+                 <div className="min-h-screen pt-20 duration-700 animate-in fade-in">
+                   <PrivacyPolicy />
+                 </div>
+               } />
+            </Routes>
+          </Suspense>
         </main>
 
         {/* Floating Comparison Bar (Rendered globally across routes) */}
