@@ -1,11 +1,25 @@
-import React, { useState } from 'react';
-import { motion } from 'framer-motion';
+import React, { useState, useRef } from 'react';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { ArrowRight, Play, MapPin } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 const Hero = () => {
   const navigate = useNavigate();
   const [isImageLoaded, setIsImageLoaded] = useState(false);
+  const containerRef = useRef(null);
+
+  // Set up scroll tracking for the hero container
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"]
+  });
+
+  // Calculate dynamic scale and Y position based on scroll progress
+  // Image will scale from 1 to 1.15 and move down slightly for a parallax effect
+  const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
+  const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
+  // Opacity fades out slightly as we scroll down
+  const bgOpacity = useTransform(scrollYProgress, [0, 1], [1, 0.5]);
 
   const scrollToCatalog = () => {
      navigate('/products');
@@ -16,13 +30,11 @@ const Hero = () => {
   };
 
   return (
-    <div className="relative flex items-center justify-center min-h-[110vh] overflow-hidden bg-black">
+    <div ref={containerRef} className="relative flex items-center justify-center min-h-[110vh] overflow-hidden bg-black">
       <div className="absolute inset-0 z-0">
         <motion.div 
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
-          className={`w-full h-full will-change-transform ${!isImageLoaded ? 'bg-slate-800/60 animate-pulse' : 'bg-black'}`}
+          style={{ scale: bgScale, y: bgY, opacity: bgOpacity }}
+          className={`w-full h-full will-change-transform sticky top-0 ${!isImageLoaded ? 'bg-slate-800/60 animate-pulse' : 'bg-black'}`}
         >
              {!isImageLoaded && (
                <div className="absolute inset-0 flex items-center justify-center z-10">
@@ -38,9 +50,9 @@ const Hero = () => {
             />
         </motion.div>
         
-        <div className="absolute inset-0 bg-black/50"></div>
-        <div className="absolute inset-0 bg-linear-to-r from-black via-black/10 to-transparent"></div>
-        <div className="absolute inset-0 opacity-90 bg-gradient-to-t from-black via-transparent to-transparent"></div>
+        <div className="absolute inset-0 bg-black/40"></div>
+        <div className="absolute inset-0 bg-linear-to-r from-black/90 via-black/40 to-black/10"></div>
+        <div className="absolute inset-0 opacity-100 bg-gradient-to-t from-black via-transparent to-transparent"></div>
       </div>
 
       <div className="container mx-auto px-4 z-10 pt-20 relative max-w-[1400px]">
@@ -105,28 +117,28 @@ const Hero = () => {
             transition={{ delay: 0.6, duration: 0.8 }}
             className="hidden relative lg:block lg:w-2/5 will-change-transform"
           >
-             <div className="relative z-10 p-8 border shadow-2xl bg-white/10 backdrop-blur-xl border-white/20 rounded-3xl">
-                <div className="grid grid-cols-2 gap-8">
-                    <div className="p-4 text-center border-b border-r border-white/10">
-                        <span className="block mb-1 text-4xl font-serif font-bold text-brand-gold">15K+</span>
-                        <span className="text-xs tracking-wider uppercase text-slate-300">Premium Products</span>
+             <div className="relative z-10 p-10 border shadow-[0_20px_50px_rgba(0,0,0,0.5)] bg-white/5 backdrop-blur-2xl border-white/10 rounded-[2.5rem]">
+                <div className="grid grid-cols-2 gap-x-10 gap-y-12">
+                    <div className="flex flex-col items-center justify-center p-2 border-b border-r border-white/10 pb-10 pr-6">
+                        <span className="block mb-2 text-5xl font-serif font-black text-brand-gold drop-shadow-lg">15K+</span>
+                        <span className="text-[9px] sm:text-[10px] tracking-[0.2em] font-bold uppercase text-white/80">Premium Products</span>
                     </div>
-                    <div className="p-4 text-center border-b border-white/10">
-                        <span className="block mb-1 text-4xl font-serif font-bold text-white">50+</span>
-                        <span className="text-xs tracking-wider uppercase text-slate-300">Global Brands</span>
+                    <div className="flex flex-col items-center justify-center p-2 border-b border-white/10 pb-10 pl-6">
+                        <span className="block mb-2 text-5xl font-serif font-black text-white drop-shadow-lg">50+</span>
+                        <span className="text-[9px] sm:text-[10px] tracking-[0.2em] font-bold uppercase text-white/80">Global Brands</span>
                     </div>
-                    <div className="p-4 text-center border-r border-white/10">
-                        <span className="block mb-1 text-4xl font-serif font-bold text-white">28</span>
-                        <span className="text-xs tracking-wider uppercase text-slate-300">Years of Trust</span>
+                    <div className="flex flex-col items-center justify-center p-2 border-r border-white/10 pt-10 pr-6">
+                        <span className="block mb-2 text-5xl font-serif font-black text-white drop-shadow-lg">28</span>
+                        <span className="text-[9px] sm:text-[10px] tracking-[0.2em] font-bold uppercase text-white/80">Years of Trust</span>
                     </div>
-                    <div className="p-4 text-center">
-                        <span className="block mb-1 text-4xl font-serif font-bold text-brand-red">24/7</span>
-                        <span className="text-xs tracking-wider uppercase text-slate-300">Expert Support</span>
+                    <div className="flex flex-col items-center justify-center p-2 pt-10 pl-6">
+                        <span className="block mb-2 text-5xl font-serif font-black text-brand-red drop-shadow-lg">24/7</span>
+                        <span className="text-[9px] sm:text-[10px] tracking-[0.2em] font-bold uppercase text-white/80">Expert Support</span>
                     </div>
                 </div>
              </div>
-             <div className="absolute w-32 h-32 rounded-full opacity-50 -top-10 -right-10 bg-brand-gold mix-blend-overlay filter blur-3xl animate-pulse"></div>
-             <div className="absolute w-40 h-40 rounded-full opacity-50 -bottom-10 -left-10 bg-brand-red mix-blend-overlay filter blur-3xl animate-pulse"></div>
+             <div className="absolute w-56 h-56 rounded-full opacity-30 -top-16 -right-16 bg-brand-gold mix-blend-screen filter blur-[4rem] animate-pulse"></div>
+             <div className="absolute w-64 h-64 rounded-full opacity-30 -bottom-20 -left-20 bg-brand-red mix-blend-screen filter blur-[5rem] animate-pulse" style={{ animationDelay: '1s' }}></div>
           </motion.div>
         </div>
       </div>

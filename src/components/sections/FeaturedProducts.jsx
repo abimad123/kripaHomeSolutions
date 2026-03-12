@@ -69,7 +69,7 @@ const FeaturedProducts = ({ onViewDetails, onEnquire, compareList, onToggleCompa
                 exit={{ opacity: 0, scale: 0.9 }}
                 transition={{ duration: 0.3 }}
                 key={product.id}
-                className="group relative bg-white dark:bg-brand-surface rounded-[2.5rem] overflow-hidden shadow-lg hover:shadow-2xl hover:shadow-brand-red/10 hover:-translate-y-2 transition-all duration-500 border border-slate-200/50 dark:border-white/10 flex flex-col"
+                className="group relative bg-white dark:bg-brand-surface rounded-[2.5rem] overflow-hidden shadow-[0_8px_30px_rgb(0,0,0,0.06)] hover:shadow-[0_20px_40px_rgb(0,0,0,0.25)] dark:shadow-md dark:hover:shadow-2xl dark:hover:shadow-brand-red/10 hover:-translate-y-2 transition-all duration-500 border border-slate-200/80 dark:border-white/10 flex flex-col"
               >
                 {/* Image Section */}
                 <div className="relative overflow-hidden h-72 bg-slate-100 dark:bg-brand-dark">
@@ -106,12 +106,12 @@ const FeaturedProducts = ({ onViewDetails, onEnquire, compareList, onToggleCompa
                   </div>
 
                   {/* Quick View Button Overlay */}
-                  <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 pointer-events-none group-hover:opacity-100">
+                  <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 pointer-events-none group-hover:opacity-100 z-20">
                     <button
                       onClick={() => navigate(`/products/${product.id}`)}
-                      className="flex items-center justify-center transition-transform rounded-full shadow-2xl pointer-events-auto w-14 h-14 bg-white/90 dark:bg-brand-navy/90 backdrop-blur-md text-brand-navy dark:text-white hover:scale-110"
+                      className="flex items-center justify-center transition-transform rounded-full shadow-2xl pointer-events-auto w-14 h-14 bg-brand-red/90 hover:bg-brand-red backdrop-blur-md text-white border border-red-500/50 shadow-brand-red/30 hover:scale-110"
                     >
-                      <Eye size={20} />
+                      <Eye size={20} strokeWidth={2.5} />
                     </button>
                   </div>
                 </div>

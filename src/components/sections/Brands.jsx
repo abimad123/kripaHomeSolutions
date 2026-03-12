@@ -4,16 +4,16 @@ import { motion } from 'framer-motion';
 
 // Replace these URLs with your actual local paths if needed
 const brands = [
-  { name: 'Asian Paints', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c2/Asian_Paints_Logo.svg/1200px-Asian_Paints_Logo.svg.png' },
-  { name: 'luker', logo: 'https://www.luker.in/static/media/Luker_nav_logo-1.a8ee57b82c3eafa2dcd6.jpg' },
-  { name: 'Dulux', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c5/Dulux_logo.svg/2560px-Dulux_logo.svg.png' },
-  { name: 'Hettich', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/a8/Hettich_logo.svg/2560px-Hettich_logo.svg.png' },
-  { name: 'Hafele', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/0/07/H%C3%A4fele_Logo.svg/1200px-H%C3%A4fele_Logo.svg.png' },
-  { name: 'Jaquar', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/6/6f/Jaquar_Group_Logo.svg/1200px-Jaquar_Group_Logo.svg.png' },
-  { name: 'Cera', logo: 'https://upload.wikimedia.org/wikipedia/commons/0/08/Cera_Sanitaryware_Logo.png' },
-  { name: 'Havells', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e7/Havells_Logo.svg/1200px-Havells_Logo.svg.png' },
-  { name: 'Anchor', logo: 'https://download.logo.wine/logo/Panasonic/Panasonic-Logo.wine.png' },
-  { name: 'Pidilite', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/2/22/Pidilite_logo.svg/1200px-Pidilite_logo.svg.png' }
+  { name: 'Luker', logo: 'https://www.luker.in/static/media/Luker_nav_logo-1.a8ee57b82c3eafa2dcd6.jpg' },
+  { name: 'RR Kabel', logo: 'https://www.rrkabel.com/wp-content/uploads/2024/08/RR-Kabel-logo.svg' },
+  { name: 'Havells', logo: 'https://havells.com/media/logo/stores/1/Havells_Logo.svg' },
+  { name: 'Cera', logo: 'https://www.cera-india.com/themes/cera/assets/images/cera-logo-desk.gif' },
+  { name: 'American Standard', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/American_Standard_logo_2017.svg/500px-American_Standard_logo_2017.svg.png' },
+  { name: 'Grohe', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Grohe.svg/375px-Grohe.svg.png' },
+  { name: 'Legrand', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/af/Legrand.svg/1920px-Legrand.svg.png?20091220174938' },
+  { name: 'Berger', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Berger.png/500px-Berger.png' },
+  { name: 'Asian Paints', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Asian_paints_logo.svg/375px-Asian_paints_logo.svg.png' },
+  { name: 'V-Guard', logo: 'https://www.vguard.in/ui/client/images/vguard-logo.jpg' }
 ];
 
 const Brands = () => {
@@ -55,7 +55,7 @@ const Brands = () => {
           {[...brands, ...brands, ...brands, ...brands].map((brand, index) => (
             <div
               key={index}
-              className="relative flex items-center justify-center h-20 w-40 md:w-48 group grayscale hover:grayscale-0 transition-all duration-500 opacity-60 hover:opacity-100 hover:scale-110"
+              className="relative flex items-center justify-center w-40 h-20 transition-transform duration-500 md:w-48 group hover:scale-110"
             >
               <img
                 src={brand.logo}

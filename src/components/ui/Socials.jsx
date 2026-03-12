@@ -51,7 +51,7 @@ const Socials = () => {
               <span className="text-brand-gold font-bold uppercase tracking-[0.3em] text-xs">Join our Community</span>
             </div>
             <h2 className="text-4xl font-black leading-tight font-serif md:text-6xl text-brand-navy dark:text-white">
-              See Us <span className="italic text-transparent bg-clip-text bg-linear-to-r from-brand-red to-brand-gold">In Action</span>
+              See Us <br /> <span className="italic text-transparent bg-clip-text bg-linear-to-r from-brand-red to-brand-gold">In Action</span>
             </h2>
           </div>
 
