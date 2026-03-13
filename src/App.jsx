@@ -15,6 +15,7 @@ import ComparisonModal from './components/ui/ComparisonModal';
 import Footer from './components/layout/Footer';
 import { Layers, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import SEO from './components/ui/SEO';
 
 // Lazy-loaded routes for code splitting
 const Contact = lazy(() => import('./pages/Contact'));
@@ -49,6 +50,57 @@ const PageLoader = () => (
   </div>
 );
 
+// --- Structured Data for SEO ---
+const StructuredData = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Kripa Home Solutions",
+    "image": "https://kripahomesolutions.abijith.me/Kripalogo.png",
+    "@id": "https://kripahomesolutions.abijith.me",
+    "url": "https://kripahomesolutions.abijith.me",
+    "telephone": "+91 8606123467",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Kottarakkara Sasthamcotta Rd, Puthoor",
+      "addressLocality": "Kollam",
+      "addressRegion": "Kerala",
+      "postalCode": "691507",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 9.0064, 
+      "longitude": 76.7112
+    },
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "09:00",
+      "closes": "20:00"
+    },
+    "sameAs": [
+      "https://www.facebook.com/Kripahomesolutions",
+      "https://www.instagram.com/kripahomesolutions",
+      "https://www.youtube.com/channel/UCceQg8aDcOEbeZyb7H2BvBg"
+    ]
+  };
+
+  return (
+    <script type="application/ld+json">
+      {JSON.stringify(schema)}
+    </script>
+  );
+};
+
 // --- App Content (Inner Component to use useLocation) ---
 const AppContent = ({ darkMode, toggleTheme, compareList, setCompareList, enquiryPrefill, handleProductEnquiry, toggleCompare, isCompareModalOpen, setIsCompareModalOpen }) => {
   const location = useLocation();
@@ -57,14 +109,19 @@ const AppContent = ({ darkMode, toggleTheme, compareList, setCompareList, enquir
   return (
     <>
       <ScrollToTop />
+      <StructuredData />
       {!isAdminRoute && <Navbar darkMode={darkMode} toggleTheme={toggleTheme} />}
       
       <main className="flex-grow pt-0 transition-opacity duration-500">
           <Suspense fallback={<PageLoader />}>
              <Routes>
                 <Route path="/" element={
-                   <div className="duration-700 animate-in fade-in">
-                     <Hero />
+              <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="p-0">
+                <SEO 
+                  title="Best Building Materials & Kitchens in Kollam"
+                  description="Kripa Home Solutions - Your one-stop destination for luxury modular kitchens, sanitaryware, electrical fittings, and paints. Leading showroom in Puthoor, Kollam since 1995."
+                />
+                <Hero />
                      <Categories />
                      <FeaturedProducts onEnquire={handleProductEnquiry} compareList={compareList} onToggleCompare={toggleCompare} />
                      <WhyChooseUs />
@@ -73,7 +130,7 @@ const AppContent = ({ darkMode, toggleTheme, compareList, setCompareList, enquir
                      <Testimonials />
                      <Gallery />
                      <Socials />
-                   </div>
+                   </motion.div>
                 } />
                 <Route path="/about" element={<div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4"><About /></div>} />
                 <Route path="/contact" element={<div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4"><Contact prefill={enquiryPrefill} /></div>} />

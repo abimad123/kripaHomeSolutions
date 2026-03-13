@@ -2,10 +2,15 @@ import React from 'react';
 import { Section } from '../components/ui/Section';
 import { motion } from 'framer-motion';
 import { History, Target, Users, Award, ShieldCheck, Gem, Store, Globe } from 'lucide-react';
+import SEO from '../components/ui/SEO';
 
 const About = () => {
   return (
     <div className="overflow-hidden bg-white dark:bg-brand-dark">
+      <SEO 
+        title="About Our Legacy"
+        description="Learn about Kripa Home Solutions, a leader in premium home construction materials in Kerala since 1995. Discover our heritage, mission, and the legacy of Kripa Arcade in Puthoor."
+      />
       {/* Hero Header */}
       <section className="relative h-[60vh] flex items-center justify-center pt-24">
         <div className="absolute inset-0 z-0">

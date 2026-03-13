@@ -2,6 +2,7 @@ import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Search, Filter, ChevronDown, MessageSquare, Star, LayoutGrid, List, RotateCcw, Layers, Check, ArrowRight } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
+import SEO from '../components/ui/SEO';
 
 import { catalogProducts, productCategories } from '../data/productData';
 
@@ -51,6 +52,10 @@ const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, com
 
   return (
     <div className="min-h-screen bg-white dark:bg-brand-dark">
+      <SEO 
+        title="Product Catalog | Premium Home Solutions"
+        description="Explore our wide range of premium building materials, modular kitchens, sanitaryware, and electrical fittings in Kollam, Kerala. Top global brands at wholesale prices."
+      />
       <div className="relative h-[35vh] md:h-[40vh] bg-brand-navy flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-20 grayscale bg-[url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1600')] bg-center bg-cover"></div>
         <div className="absolute inset-0 bg-gradient-to-t from-brand-dark via-brand-dark/40 to-transparent"></div>

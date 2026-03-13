@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { ChevronRight, Home, MessageSquare, ArrowLeft, Star, ShieldCheck, Truck, Share2, Link as LinkIcon, Layers, Info } from 'lucide-react';
 import { Link, useNavigate, useParams } from 'react-router-dom';
+import SEO from '../components/ui/SEO';
 import { Section } from '../components/ui/Section';
 
 // Data reused for demonstration; in a real app this would be in a shared store or API
@@ -19,6 +20,7 @@ const ProductDetails = ({ onEnquire, compareList = [], onToggleCompare }) => {
   if (!product) {
     return (
       <Section className="min-h-[60vh] flex items-center justify-center">
+        <SEO title="Product Not Found" description="The product you are looking for could not be found." />
         <div className="text-center">
           <h2 className="mb-4 text-3xl font-black font-serif">Product Not Found</h2>
           <button 
@@ -48,6 +50,10 @@ const ProductDetails = ({ onEnquire, compareList = [], onToggleCompare }) => {
 
   return (
     <div className="pb-16 bg-white dark:bg-brand-dark">
+      <SEO 
+        title={`${product.name} | ${product.brand}`}
+        description={`Detailed specifications and offer price for ${product.name} by ${product.brand}. ${product.description}`}
+      />
       {/* Compact Breadcrumb */}
       <div className="py-3 border-b bg-slate-50 dark:bg-brand-surface border-slate-200 dark:border-white/5">
         <div className="max-w-[1400px] mx-auto px-4">

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Section } from '../components/ui/Section';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Mail, Phone, MapPin, Send, CheckCircle } from 'lucide-react';
+import SEO from '../components/ui/SEO';
 
 const Contact = ({ prefill = '' }) => {
   const [formStatus, setFormStatus] = useState('idle');
@@ -27,6 +28,10 @@ const Contact = ({ prefill = '' }) => {
 
   return (
     <Section id="contact" className="relative py-16 overflow-hidden bg-white dark:bg-black md:py-32">
+      <SEO 
+        title="Contact Us | Showroom Location & Enquiries"
+        description="Contact Kripa Home Solutions in Puthoor, Kollam. Visit our luxury showroom for modular kitchens, sanitaryware, and electrical fittings. Call +91 8606 123467 for expert consultation."
+      />
       <div className="absolute inset-0 z-0 pointer-events-none">
         <motion.div
           animate={{ scale: [1, 1.2, 1], opacity: [0.3, 0.5, 0.3] }}
@@ -59,14 +64,14 @@ const Contact = ({ prefill = '' }) => {
                 <div className="flex items-center justify-center w-10 h-10 transition-all rounded-xl bg-brand-red/10 text-brand-red group-hover:bg-brand-red group-hover:text-white"><Phone size={18} /></div>
                 Support Line
               </div>
-              <p className="text-lg font-bold text-slate-500 dark:text-slate-300">+91 98765 43210</p>
+              <p className="text-lg font-bold text-slate-500 dark:text-slate-300">+91 8606 123467</p>
             </div>
             <div className="group">
               <div className="flex items-center gap-4 mb-3 text-xs font-bold tracking-widest uppercase text-brand-navy dark:text-white">
                 <div className="flex items-center justify-center w-10 h-10 transition-all rounded-xl bg-brand-red/10 text-brand-red group-hover:bg-brand-red group-hover:text-white"><Mail size={18} /></div>
                 Enquiries
               </div>
-              <p className="text-lg font-bold text-slate-500 dark:text-slate-300">sales@kripahome.com</p>
+              <p className="text-lg font-bold text-slate-500 dark:text-slate-300">kripahomesolutionsptr@gmail.com</p>
             </div>
           </div>
 
@@ -77,7 +82,7 @@ const Contact = ({ prefill = '' }) => {
                 <div className="flex items-center justify-center text-white rounded-full shadow-lg w-14 h-14 bg-brand-red"><MapPin size={24} /></div>
                 <div>
                   <p className="text-sm font-black tracking-widest uppercase text-brand-navy dark:text-white">Kripa Arcade</p>
-                  <p className="text-xs font-bold text-slate-500">MG Road, Kochi, Kerala</p>
+                  <p className="text-xs font-bold text-slate-500">Puthoor, Kottarakkara, Kollam, Kerala</p>
                 </div>
               </div>
             </div>
