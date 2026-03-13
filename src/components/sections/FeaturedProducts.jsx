@@ -4,22 +4,18 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { Star, Eye, Heart, ArrowRight, Layers, MessageSquare } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
-const allProducts = [
-  { id: '1', name: 'Royal Luxury Emulsion', brand: 'Asian Paints', category: 'Paints', mrp: 65, offerPrice: 45, image: 'https://images.unsplash.com/photo-1562259920-47afc305f369?auto=format&fit=crop&q=80&w=600', rating: 5, description: 'Premium luxury emulsion for rich wall finish.', features: ['Washable', 'Anti-bacterial'] },
-  { id: '2', name: 'Smart Fingerprint Lock', brand: 'Dorset', category: 'Hardware', mrp: 185, offerPrice: 120, image: 'https://images.unsplash.com/photo-1558002038-1091a1661116?auto=format&fit=crop&q=80&w=600', rating: 4, description: 'Advanced biometric security for modern homes.', features: ['Fingerprint unlock', 'Smart alerts'] },
-  { id: '3', name: 'Matte Black Faucet', brand: 'Jaquar', category: 'Sanitaryware', mrp: 110, offerPrice: 85, image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=600', rating: 5, description: 'Contemporary matte black designer faucet.', features: ['Ceramic disc', '7-year warranty'] },
-  { id: '4', name: 'Modular Corner Unit', brand: 'Hettich', category: 'Kitchen', mrp: 210, offerPrice: 160, image: 'https://images.unsplash.com/photo-1556911220-e15b29be8c8f?auto=format&fit=crop&q=80&w=600', rating: 4, description: 'Efficient corner storage for modular kitchens.', features: ['Soft close', 'Anti-slip surface'] },
-];
+import { catalogProducts, productCategories } from '../../data/productData';
 
-const categories = ["All", "Hardware", "Paints", "Sanitaryware", "Kitchen"];
+const allProducts = catalogProducts;
+const categories = productCategories;
 
 const FeaturedProducts = ({ onViewDetails, onEnquire, compareList, onToggleCompare }) => {
   const [activeTab, setActiveTab] = useState("All");
   const navigate = useNavigate();
 
-  const filteredProducts = activeTab === "All"
+  const filteredProducts = (activeTab === "All"
     ? allProducts
-    : allProducts.filter(p => p.category === activeTab);
+    : allProducts.filter(p => p.category === activeTab)).slice(0, 4);
 
   return (
     <Section id="products" className="bg-white dark:bg-black" darkBg>
@@ -159,6 +155,24 @@ const FeaturedProducts = ({ onViewDetails, onEnquire, compareList, onToggleCompa
             );
           })}
         </AnimatePresence>
+      </motion.div>
+
+      <motion.div 
+        initial={{ opacity: 0, y: 20 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        viewport={{ once: true }}
+        className="mt-16 text-center"
+      >
+        <button 
+          onClick={() => navigate('/products')}
+          className="group relative inline-flex items-center gap-3 px-10 py-5 bg-transparent border-2 border-brand-red text-brand-red font-black text-xs uppercase tracking-[0.3em] rounded-2xl transition-all duration-500 hover:bg-brand-red hover:text-white hover:shadow-[0_20px_40px_rgba(235,33,46,0.3)] hover:-translate-y-1 active:scale-95"
+        >
+          Explore Full Catalog
+          <ArrowRight size={16} className="transition-transform duration-500 group-hover:translate-x-2" />
+          
+          {/* Subtle glow effect behind button on hover */}
+          <div className="absolute inset-0 transition-opacity opacity-0 rounded-2xl bg-brand-red/20 blur-xl -z-10 group-hover:opacity-100"></div>
+        </button>
       </motion.div>
     </Section>
   );
