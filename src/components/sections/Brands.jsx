@@ -2,18 +2,17 @@ import React from 'react';
 import { Section } from '../ui/Section';
 import { motion } from 'framer-motion';
 
-// Replace these URLs with your actual local paths if needed
 const brands = [
-  { name: 'Luker', logo: 'https://www.luker.in/static/media/Luker_nav_logo-1.a8ee57b82c3eafa2dcd6.jpg' },
-  { name: 'RR Kabel', logo: 'https://www.rrkabel.com/wp-content/uploads/2024/08/RR-Kabel-logo.svg' },
-  { name: 'Havells', logo: 'https://havells.com/media/logo/stores/1/Havells_Logo.svg' },
-  { name: 'Cera', logo: 'https://www.cera-india.com/themes/cera/assets/images/cera-logo-desk.gif' },
-  { name: 'American Standard', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/71/American_Standard_logo_2017.svg/500px-American_Standard_logo_2017.svg.png' },
-  { name: 'Grohe', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/Grohe.svg/375px-Grohe.svg.png' },
-  { name: 'Legrand', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/a/af/Legrand.svg/1920px-Legrand.svg.png?20091220174938' },
-  { name: 'Berger', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Berger.png/500px-Berger.png' },
-  { name: 'Asian Paints', logo: 'https://upload.wikimedia.org/wikipedia/en/thumb/e/e2/Asian_paints_logo.svg/375px-Asian_paints_logo.svg.png' },
-  { name: 'V-Guard', logo: 'https://www.vguard.in/ui/client/images/vguard-logo.jpg' }
+  { name: 'Luker', logo: '/brands/luker.svg' },
+  { name: 'RR Kabel', logo: '/brands/RR-Kabel.svg' },
+  { name: 'Havells', logo: '/brands/Havells.svg' },
+  { name: 'Cera', logo: '/brands/cera.gif' },
+  { name: 'American Standard', logo: '/brands/American_Standard.png' },
+  { name: 'Grohe', logo: '/brands/Grohe.svg' },
+  { name: 'Legrand', logo: '/brands/Legrand.png' },
+  { name: 'Berger', logo: '/brands/Berger.png' },
+  { name: 'Asian Paints', logo: '/brands/Asian_Paints.svg' },
+  { name: 'V-Guard', logo: '/brands/vguard.png' }
 ];
 
 const Brands = () => {
@@ -43,7 +42,7 @@ const Brands = () => {
         <div className="absolute top-0 bottom-0 right-0 z-10 w-20 pointer-events-none md:w-40 bg-gradient-to-l from-slate-50 dark:from-brand-dark to-transparent"></div>
 
         <motion.div
-          className="flex items-center gap-16 md:gap-24 whitespace-nowrap"
+          className="flex w-max items-center gap-16 md:gap-24 whitespace-nowrap"
           animate={{ x: "-50%" }}
           transition={{
             ease: "linear",
@@ -55,12 +54,12 @@ const Brands = () => {
           {[...brands, ...brands, ...brands, ...brands].map((brand, index) => (
             <div
               key={index}
-              className="relative flex items-center justify-center w-40 h-20 transition-transform duration-500 md:w-48 group hover:scale-110"
+              className="relative flex shrink-0 items-center justify-center w-40 h-20 transition-transform duration-500 md:w-48 group hover:scale-110"
             >
               <img
                 src={brand.logo}
                 alt={brand.name}
-                className="object-contain w-full h-full max-h-16"
+                className="object-contain w-full h-full max-h-16 dark:brightness-0 dark:invert"
               />
             </div>
           ))}
