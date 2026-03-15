@@ -2,17 +2,17 @@ import React, { useState, useEffect, Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Routes, Route, useLocation } from 'react-router-dom';
 import Navbar from './components/layout/Navbar';
 import Hero from './components/sections/Hero';
-import Categories from './components/sections/Categories';
-import FeaturedProducts from './components/sections/FeaturedProducts';
-import WhyChooseUs from './components/sections/WhyChooseUs';
-import VideoSeries from './components/sections/VideoSeries';
-import Brands from './components/sections/Brands';
-import Testimonials from './components/sections/Testimonials';
-import Gallery from './components/sections/Gallery';
-import Socials from './components/ui/Socials';
+const Categories = lazy(() => import('./components/sections/Categories'));
+const FeaturedProducts = lazy(() => import('./components/sections/FeaturedProducts'));
+const WhyChooseUs = lazy(() => import('./components/sections/WhyChooseUs'));
+const VideoSeries = lazy(() => import('./components/sections/VideoSeries'));
+const Brands = lazy(() => import('./components/sections/Brands'));
+const Testimonials = lazy(() => import('./components/sections/Testimonials'));
+const Gallery = lazy(() => import('./components/sections/Gallery'));
+const Socials = lazy(() => import('./components/ui/Socials'));
 
 import ComparisonModal from './components/ui/ComparisonModal';
-import Footer from './components/layout/Footer';
+const Footer = lazy(() => import('./components/layout/Footer'));
 import { Layers, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from './components/ui/SEO';
@@ -187,7 +187,9 @@ const AppContent = ({ darkMode, toggleTheme, compareList, setCompareList, enquir
             )}
           </AnimatePresence>
           <ComparisonModal isOpen={isCompareModalOpen} onClose={() => setIsCompareModalOpen(false)} products={compareList} onRemove={toggleCompare} />
-          <Footer />
+          <Suspense fallback={null}>
+            <Footer />
+          </Suspense>
         </>
       )}
     </>

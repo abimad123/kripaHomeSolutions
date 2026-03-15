@@ -9,42 +9,42 @@ const categoriesData = [
     name: 'Hardware',
     displayName: 'Hardware',
     description: 'Premium handles, digital locks, and fittings that define security and style.',
-    image: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fm=webp&fit=crop&q=80&w=800'
   },
   {
     id: '2',
     name: 'Paints',
     displayName: 'Paints & Finishes',
     description: 'Vibrant colors and textures for interiors and exteriors.',
-    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=600'
+    image: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fm=webp&fit=crop&q=80&w=600'
   },
   {
     id: '3',
     name: 'Kitchen',
     displayName: 'Modular Kitchens',
     description: 'Smart culinary spaces designed for the modern chef.',
-    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fit=crop&q=80&w=600'
+    image: 'https://images.unsplash.com/photo-1556911220-bff31c812dba?auto=format&fm=webp&fit=crop&q=80&w=800'
   },
   {
     id: '4',
     name: 'Sanitaryware',
     displayName: 'Luxury Sanitaryware',
     description: 'Transform your daily routine with spa-like bathroom fittings.',
-    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fm=webp&fit=crop&q=80&w=800'
   },
   {
     id: '5',
     name: 'Electrical',
     displayName: 'Electrical Solutions',
     description: 'Efficient lighting and smart switches.',
-    image: 'https://images.unsplash.com/photo-1558211583-d26f610c1eb1?auto=format&fit=crop&q=80&w=600'
+    image: 'https://images.unsplash.com/photo-1558211583-d26f610c1eb1?auto=format&fm=webp&fit=crop&q=80&w=600'
   },
   {
     id: '6',
     name: 'All',
     displayName: 'Building Materials',
     description: 'Foundational strength for lasting structures.',
-    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fit=crop&q=80&w=800'
+    image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fm=webp&fit=crop&q=80&w=800'
   }
 ];
 
@@ -121,6 +121,7 @@ const Categories = ({ onCategorySelect }) => {
               <img
                 src={category.image}
                 alt={category.displayName}
+                loading="lazy"
                 onLoad={() => handleImageLoad(category.id)}
                 className={`object-cover w-full h-full duration-700 ease-out transition-all group-hover:scale-110 group-hover:opacity-60 ${loadedImages[category.id] ? 'opacity-80' : 'opacity-0 scale-105'}`}
               />

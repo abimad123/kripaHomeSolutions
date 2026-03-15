@@ -42,8 +42,10 @@ const Hero = () => {
                </div>
              )}
              <img 
-              src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=75&w=1920&auto=format&fit=crop" 
+              src="https://images.unsplash.com/photo-1600607686527-6fb886090705?q=75&w=1920&auto=format&fm=webp&fit=crop" 
               alt="Kripa Home Solutions" 
+              width="1920"
+              height="1080"
               className={`object-cover w-full h-full transition-opacity duration-1000 ease-in-out ${isImageLoaded ? 'opacity-100' : 'opacity-0'}`}
               fetchPriority="high"
               onLoad={() => setIsImageLoaded(true)}
