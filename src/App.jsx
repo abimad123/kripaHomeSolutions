@@ -23,6 +23,10 @@ const About = lazy(() => import('./pages/About'));
 const ProductCatalog = lazy(() => import('./pages/ProductCatalog'));
 const ProductDetails = lazy(() => import('./pages/ProductDetails'));
 const PrivacyPolicy = lazy(() => import('./pages/LegalPolicy'));
+const TermsOfService = lazy(() => import('./pages/TermsOfService'));
+const Sitemap = lazy(() => import('./pages/Sitemap'));
+const NotFound = lazy(() => import('./pages/NotFound'));
+
 
 // Admin Imports
 const AdminLayout = lazy(() => import('./components/admin/AdminLayout'));
@@ -137,6 +141,8 @@ const AppContent = ({ darkMode, toggleTheme, compareList, setCompareList, enquir
                 <Route path="/products" element={<div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4"><ProductCatalog onEnquire={handleProductEnquiry} compareList={compareList} onToggleCompare={toggleCompare} /></div>} />
                 <Route path="/products/:id" element={<div className="min-h-screen pt-24 duration-700 animate-in fade-in slide-in-from-bottom-4"><ProductDetails onEnquire={handleProductEnquiry} compareList={compareList} onToggleCompare={toggleCompare} /></div>} />
                 <Route path="/privacy-policy" element={<div className="min-h-screen pt-20 duration-700 animate-in fade-in"><PrivacyPolicy /></div>} />
+                <Route path="/terms" element={<div className="min-h-screen pt-20 duration-700 animate-in fade-in"><TermsOfService /></div>} />
+                <Route path="/sitemap" element={<div className="min-h-screen pt-20 duration-700 animate-in fade-in"><Sitemap /></div>} />
                 
                 {/* Admin Routes */}
                 <Route path="/admin" element={<AdminLayout />}>
@@ -147,6 +153,8 @@ const AppContent = ({ darkMode, toggleTheme, compareList, setCompareList, enquir
                    <Route path="inquiries" element={<Inquiries />} />
                    <Route path="subscribers" element={<Subscribers />} />
                 </Route>
+
+                <Route path="*" element={<div className="min-h-screen pt-20 duration-700 animate-in fade-in"><NotFound /></div>} />
              </Routes>
           </Suspense>
       </main>

@@ -17,7 +17,7 @@ const brands = [
 
 const Brands = () => {
   return (
-    <Section className="py-24 overflow-hidden border-y bg-slate-50 dark:bg-brand-dark border-slate-200 dark:border-slate-800">
+    <Section id="brands" className="py-24 overflow-hidden border-y bg-slate-50 dark:bg-brand-dark border-slate-200 dark:border-slate-800">
       <div className="relative z-10 px-2 mb-16">
         <div className="flex items-center gap-2 mb-3">
           <span className="w-10 h-px bg-brand-red"></span>

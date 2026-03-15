@@ -1,7 +1,7 @@
 import React, { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence, LayoutGroup } from 'framer-motion';
 import { Search, Filter, ChevronDown, MessageSquare, Star, LayoutGrid, List, RotateCcw, Layers, Check, ArrowRight } from 'lucide-react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, useSearchParams } from 'react-router-dom';
 import SEO from '../components/ui/SEO';
 
 import { catalogProducts, productCategories } from '../data/productData';
@@ -10,13 +10,22 @@ const categories = productCategories;
 const sortOptions = ["Newest", "Price: Low to High", "Price: High to Low", "Rating"];
 
 const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, compareList, onToggleCompare }) => {
-  const [searchTerm, setSearchTerm] = useState('');
+  const [searchParams] = useSearchParams();
+  const initialSearch = searchParams.get('search') || '';
+  
+  const [searchTerm, setSearchTerm] = useState(initialSearch);
   const [selectedCategory, setSelectedCategory] = useState(initialCategory);
   const [sortBy, setSortBy] = useState('Newest');
   const [viewMode, setViewMode] = useState('grid');
   const [priceRange, setPriceRange] = useState(500);
   const [isFilterOpen, setIsFilterOpen] = useState(false);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    if (initialSearch) {
+      setSearchTerm(initialSearch);
+    }
+  }, [initialSearch]);
 
   useEffect(() => {
     if (initialCategory) {

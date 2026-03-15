@@ -1,11 +1,41 @@
 import React from 'react';
 import { MapPin, Phone, Mail, Home, ArrowUp, Instagram, Facebook, Youtube, Twitter } from 'lucide-react';
 import { motion } from 'framer-motion';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
+  const navItems = [
+    { name: 'Showroom Tour', path: '/#gallery' },
+    { name: 'Trending Products', path: '/#products' },
+    { name: 'Brand Partners', path: '/#brands' },
+    { name: 'Expert Video Series', path: '/#video-series' },
+    { name: 'Customer Stories', path: '/#testimonials' },
+    { name: 'Contact Support', path: '/contact' }
+  ];
+
+  const handleLinkClick = (e, path) => {
+    if (path.startsWith('/#')) {
+      e.preventDefault();
+      const targetId = path.substring(2);
+      
+      if (location.pathname !== '/') {
+        navigate(path);
+      } else {
+        const element = document.getElementById(targetId);
+        if (element) {
+          element.scrollIntoView({ behavior: 'smooth' });
+        } else {
+          navigate(path);
+        }
+      }
+    }
   };
 
   return (
@@ -75,11 +105,15 @@ const Footer = () => {
               <span className="absolute left-0 w-8 h-1 rounded-full -bottom-2 bg-brand-red"></span>
             </h4>
             <ul className="space-y-4 text-sm font-medium">
-              {['Showroom Tour', 'Trending Products', 'Brand Partners', 'Expert Video Series', 'Customer Stories', 'Contact Support'].map((item) => (
-                <li key={item}>
-                  <Link to="#" className="flex items-center gap-2 transition-all hover:text-brand-gold group">
+              {navItems.map((item) => (
+                <li key={item.name}>
+                  <Link 
+                    to={item.path} 
+                    onClick={(e) => handleLinkClick(e, item.path)}
+                    className="flex items-center gap-2 transition-all hover:text-brand-gold group"
+                  >
                     <span className="w-0 h-px transition-all bg-brand-gold group-hover:w-4"></span>
-                    {item}
+                    {item.name}
                   </Link>
                 </li>
               ))}
@@ -98,20 +132,20 @@ const Footer = () => {
                   <MapPin size={20} />
                 </div>
                 <span className="leading-relaxed transition-colors group-hover:text-white">
-                  123, Kripa Arcade, MG Road,<br/>Kochi, Kerala 682001
+                  Kripa Arcade, Puthoor,<br/>Kollam, Kerala 691507
                 </span>
               </li>
               <li className="flex items-center gap-4 transition-all cursor-pointer group">
                 <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 transition-all rounded-lg bg-white/5 group-hover:bg-brand-red/20 group-hover:text-brand-red">
                   <Phone size={20} />
                 </div>
-                <span className="transition-colors group-hover:text-white">+91 98765 43210</span>
+                <span className="transition-colors group-hover:text-white">+91 8606 123467</span>
               </li>
               <li className="flex items-center gap-4 transition-all cursor-pointer group">
                 <div className="flex items-center justify-center flex-shrink-0 w-10 h-10 transition-all rounded-lg bg-white/5 group-hover:bg-brand-red/20 group-hover:text-brand-red">
                   <Mail size={20} />
                 </div>
-                <span className="transition-colors group-hover:text-white">hello@kripahome.com</span>
+                <span className="transition-colors group-hover:text-white">kripahomesolutionsptr@gmail.com</span>
               </li>
             </ul>
           </div>
@@ -126,16 +160,16 @@ const Footer = () => {
               Join 5,000+ homeowners receiving our weekly interior trends and offers.
             </p>
             <div className="space-y-3">
-              <div className="relative group">
+              <form className="relative group">
                 <input 
                   type="email" 
                   placeholder="Enter your email" 
                   className="w-full px-5 py-4 text-sm text-white transition-all border outline-none bg-white/5 border-white/10 rounded-2xl placeholder-slate-600 focus:border-brand-red/50 focus:bg-white/10 backdrop-blur-md"
                 />
-                <button className="absolute px-6 text-xs font-bold text-white transition-all uppercase rounded-xl right-2 top-2 bottom-2 bg-brand-red hover:bg-red-600 shadow-lg shadow-brand-red/20">
+                <button type="submit" className="absolute px-6 text-xs font-bold text-white transition-all uppercase rounded-xl right-2 top-2 bottom-2 bg-brand-red hover:bg-red-600 shadow-lg shadow-brand-red/20">
                   Join
                 </button>
-              </div>
+              </form>
               <p className="text-[10px] text-slate-600 px-2 italic">
                 * No spam, only premium home inspiration.
               </p>
@@ -151,8 +185,8 @@ const Footer = () => {
               <Link to="/privacy-policy" className="hover:text-brand-red transition-colors">
                 Privacy Policy
               </Link>
-              <Link to="#" className="transition-colors hover:text-brand-gold">Terms</Link>
-              <Link to="#" className="transition-colors hover:text-brand-gold">Sitemap</Link>
+              <Link to="/terms" className="transition-colors hover:text-brand-gold">Terms</Link>
+              <Link to="/sitemap" className="transition-colors hover:text-brand-gold">Sitemap</Link>
             </div>
           </div>
 
