@@ -36,6 +36,7 @@ const FeaturedProducts = ({ onViewDetails, onEnquire, compareList, onToggleCompa
             <button
               key={cat}
               onClick={() => setActiveTab(cat)}
+              aria-label={`Filter products by ${cat}`}
               className={`px-6 py-2 rounded-full text-xs font-bold uppercase tracking-widest transition-all duration-300 border ${activeTab === cat
                 ? 'bg-brand-red text-white border-brand-red shadow-lg shadow-brand-red/30'
                 : 'bg-transparent text-slate-500 border-slate-200 dark:border-white/10 hover:border-brand-red hover:text-brand-red'
@@ -72,6 +73,9 @@ const FeaturedProducts = ({ onViewDetails, onEnquire, compareList, onToggleCompa
                   <img
                     src={product.image}
                     alt={product.name}
+                    width="400"
+                    height="400"
+                    loading="lazy"
                     className="object-cover w-full h-full duration-700 transition-transform group-hover:scale-110"
                   />
 
@@ -87,11 +91,15 @@ const FeaturedProducts = ({ onViewDetails, onEnquire, compareList, onToggleCompa
                   </div>
 
                   <div className="absolute flex flex-col gap-3 top-6 right-6">
-                    <button className="flex items-center justify-center w-10 h-10 transition-all duration-300 border rounded-full shadow-xl opacity-0 bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-brand-red hover:border-brand-red group-hover:opacity-100 translate-y-[-10px] group-hover:translate-y-0">
+                    <button 
+                      aria-label="Add to wishlist"
+                      className="flex items-center justify-center w-10 h-10 transition-all duration-300 border rounded-full shadow-xl opacity-0 bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-brand-red hover:border-brand-red group-hover:opacity-100 translate-y-[-10px] group-hover:translate-y-0"
+                    >
                       <Heart size={16} />
                     </button>
                     <button
                       onClick={() => onToggleCompare(product)}
+                      aria-label={isComparing ? "Remove from comparison" : "Add to comparison"}
                       className={`w-10 h-10 rounded-full flex items-center justify-center transition-all duration-300 border shadow-xl opacity-0 group-hover:opacity-100 translate-y-[-10px] group-hover:translate-y-0 ${isComparing
                         ? 'bg-brand-gold border-brand-gold text-brand-navy scale-110'
                         : 'bg-white/20 backdrop-blur-md border-white/30 text-white hover:bg-brand-gold hover:border-brand-gold hover:text-brand-navy'
@@ -105,6 +113,7 @@ const FeaturedProducts = ({ onViewDetails, onEnquire, compareList, onToggleCompa
                   <div className="absolute inset-0 flex items-center justify-center transition-opacity duration-300 opacity-0 pointer-events-none group-hover:opacity-100 z-20">
                     <button
                       onClick={() => navigate(`/products/${product.id}`)}
+                      aria-label={`View details for ${product.name}`}
                       className="flex items-center justify-center transition-transform rounded-full shadow-2xl pointer-events-auto w-14 h-14 bg-brand-red/90 hover:bg-brand-red backdrop-blur-md text-white border border-red-500/50 shadow-brand-red/30 hover:scale-110"
                     >
                       <Eye size={20} strokeWidth={2.5} />
@@ -145,6 +154,7 @@ const FeaturedProducts = ({ onViewDetails, onEnquire, compareList, onToggleCompa
 
                     <button
                       onClick={() => onEnquire(product.name)}
+                      aria-label={`Enquire about ${product.name}`}
                       className="flex items-center gap-2 px-4 py-2 text-[10px] font-black tracking-widest text-white uppercase transition-all bg-brand-red rounded-xl hover:bg-red-700 shadow-lg shadow-brand-red/20"
                     >
                       <MessageSquare size={12} /> Enquire
@@ -165,6 +175,7 @@ const FeaturedProducts = ({ onViewDetails, onEnquire, compareList, onToggleCompa
       >
         <button 
           onClick={() => navigate('/products')}
+          aria-label="View all products in catalog"
           className="group relative inline-flex items-center gap-3 px-10 py-5 bg-transparent border-2 border-brand-red text-brand-red font-black text-xs uppercase tracking-[0.3em] rounded-2xl transition-all duration-500 hover:bg-brand-red hover:text-white hover:shadow-[0_20px_40px_rgba(235,33,46,0.3)] hover:-translate-y-1 active:scale-95"
         >
           Explore Full Catalog

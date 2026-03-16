@@ -56,7 +56,7 @@ const PageLoader = () => (
 
 // --- Structured Data for SEO ---
 const StructuredData = () => {
-  const schema = {
+  const localBusinessSchema = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
     "name": "Kripa Home Solutions",
@@ -80,13 +80,7 @@ const StructuredData = () => {
     "openingHoursSpecification": {
       "@type": "OpeningHoursSpecification",
       "dayOfWeek": [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-        "Saturday",
-        "Sunday"
+        "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"
       ],
       "opens": "09:00",
       "closes": "20:00"
@@ -98,10 +92,23 @@ const StructuredData = () => {
     ]
   };
 
+  const organizationSchema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Kripa Home Solutions",
+    "url": "https://kripahomesolutions.abijith.me",
+    "logo": "https://kripahomesolutions.abijith.me/Kripalogo.png"
+  };
+
   return (
-    <script type="application/ld+json">
-      {JSON.stringify(schema)}
-    </script>
+    <>
+      <script type="application/ld+json">
+        {JSON.stringify(localBusinessSchema)}
+      </script>
+      <script type="application/ld+json">
+        {JSON.stringify(organizationSchema)}
+      </script>
+    </>
   );
 };
 
@@ -122,8 +129,8 @@ const AppContent = ({ darkMode, toggleTheme, compareList, setCompareList, enquir
                 <Route path="/" element={
               <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} className="p-0">
                 <SEO 
-                  title="Best Building Materials & Kitchens in Kollam"
-                  description="Kripa Home Solutions - Your one-stop destination for luxury modular kitchens, sanitaryware, electrical fittings, and paints. Leading showroom in Puthoor, Kollam since 1995."
+                  title="Kripa Home Solutions | Building Materials & Modular Kitchens in Kollam"
+                  description="Kripa Home Solutions in Kollam offers premium modular kitchens, sanitaryware, electrical fittings, paints, and building materials. Visit our showroom in Puthoor for world-class home solutions."
                 />
                 <Hero />
                      <Categories />

@@ -166,7 +166,7 @@ const Footer = () => {
                   placeholder="Enter your email" 
                   className="w-full px-5 py-4 text-sm text-white transition-all border outline-none bg-white/5 border-white/10 rounded-2xl placeholder-slate-600 focus:border-brand-red/50 focus:bg-white/10 backdrop-blur-md"
                 />
-                <button type="submit" className="absolute px-6 text-xs font-bold text-white transition-all uppercase rounded-xl right-2 top-2 bottom-2 bg-brand-red hover:bg-red-600 shadow-lg shadow-brand-red/20">
+                <button type="submit" aria-label="Join newsletter" className="absolute px-6 text-xs font-bold text-white transition-all uppercase rounded-xl right-2 top-2 bottom-2 bg-brand-red hover:bg-red-600 shadow-lg shadow-brand-red/20">
                   Join
                 </button>
               </form>
@@ -194,6 +194,7 @@ const Footer = () => {
           <motion.button 
             whileHover={{ y: -5 }}
             onClick={scrollToTop}
+            aria-label="Back to top"
             className="flex flex-col items-center gap-2 group"
           >
             <div className="flex items-center justify-center w-12 h-12 transition-all border rounded-full shadow-lg border-white group-hover:border-brand-gold group-hover:text-brand-gold">

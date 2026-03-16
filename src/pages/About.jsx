@@ -8,8 +8,8 @@ const About = () => {
   return (
     <div className="overflow-hidden bg-white dark:bg-brand-dark">
       <SEO 
-        title="About Our Legacy"
-        description="Learn about Kripa Home Solutions, a leader in premium home construction materials in Kerala since 1995. Discover our heritage, mission, and the legacy of Kripa Arcade in Puthoor."
+        title="About Kripa Home Solutions | Building Materials Showroom in Kollam"
+        description="Learn about Kripa Home Solutions, a trusted building materials and modular kitchen showroom in Kollam serving customers with premium home solutions since 1995."
       />
       {/* Hero Header */}
       <section className="relative h-[60vh] flex items-center justify-center pt-24">

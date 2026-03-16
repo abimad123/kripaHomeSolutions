@@ -10,8 +10,7 @@ import React, { useEffect } from 'react';
 const SEO = ({ title, description, canonical }) => {
   useEffect(() => {
     // Update Document Title
-    const fullTitle = `${title} | Kripa Home Solutions`;
-    document.title = fullTitle;
+    document.title = title;
 
     // Update Meta Description
     let metaDescription = document.querySelector('meta[name="description"]');

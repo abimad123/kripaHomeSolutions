@@ -29,8 +29,8 @@ const Contact = ({ prefill = '' }) => {
   return (
     <Section id="contact" className="relative py-16 overflow-hidden bg-white dark:bg-black md:py-32">
       <SEO 
-        title="Contact Us | Showroom Location & Enquiries"
-        description="Contact Kripa Home Solutions in Puthoor, Kollam. Visit our luxury showroom for modular kitchens, sanitaryware, and electrical fittings. Call +91 8606 123467 for expert consultation."
+        title="Contact Kripa Home Solutions | Showroom in Kollam"
+        description="Contact Kripa Home Solutions in Kollam for enquiries about modular kitchens, sanitaryware, paints, and building materials. Visit our showroom in Puthoor."
       />
       <div className="absolute inset-0 z-0 pointer-events-none">
         <motion.div

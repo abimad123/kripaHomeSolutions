@@ -105,11 +105,17 @@ const VideoSeries = () => {
                 <img
                   src={currentVideo.thumbnail}
                   alt="Featured Video"
+                  width="1280"
+                  height="720"
+                  loading="lazy"
                   className="object-cover w-full h-full transition-opacity duration-500 opacity-90 group-hover:opacity-100"
                 />
 
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <div className="flex items-center justify-center w-20 h-20 transition-transform duration-300 shadow-lg bg-brand-red rounded-2xl group-hover:scale-110">
+                  <div 
+                    aria-label="Play video"
+                    className="flex items-center justify-center w-20 h-20 transition-transform duration-300 shadow-lg bg-brand-red rounded-2xl group-hover:scale-110"
+                  >
                     <Play className="ml-1 text-white fill-white" size={40} />
                   </div>
                 </div>
@@ -169,6 +175,9 @@ const VideoSeries = () => {
                   <img
                     src={video.thumbnail}
                     alt={video.title}
+                    width="128"
+                    height="96"
+                    loading="lazy"
                     className="object-cover w-full h-full duration-500 transition-transform group-hover:scale-105"
                   />
                   <div className="absolute bottom-1.5 right-1.5 bg-black/80 text-white text-[9px] font-black px-2 py-0.5 rounded-lg border border-white/20">

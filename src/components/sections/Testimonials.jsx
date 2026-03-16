@@ -69,6 +69,9 @@ const Testimonials = () => {
                   <img
                     src={item.avatar}
                     alt={item.name}
+                    width="56"
+                    height="56"
+                    loading="lazy"
                     className="relative object-cover transition-transform duration-300 border-2 border-white rounded-full shadow-md w-14 h-14 dark:border-slate-600 group-hover:scale-110"
                   />
                   <div className="absolute p-1 border-2 border-white rounded-full shadow-sm -bottom-1 -right-1 bg-brand-gold text-brand-navy dark:border-slate-600" title="Verified Customer">

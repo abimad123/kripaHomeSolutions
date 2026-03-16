@@ -62,8 +62,8 @@ const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, com
   return (
     <div className="min-h-screen bg-white dark:bg-brand-dark">
       <SEO 
-        title="Product Catalog | Premium Home Solutions"
-        description="Explore our wide range of premium building materials, modular kitchens, sanitaryware, and electrical fittings in Kollam, Kerala. Top global brands at wholesale prices."
+        title="Product Catalog | Kripa Home Solutions Kollam"
+        description="Browse the Kripa Home Solutions product catalog featuring modular kitchens, sanitaryware, electrical fittings, premium paints, and modern building materials in Kollam."
       />
       <div className="relative h-[35vh] md:h-[40vh] bg-brand-navy flex items-center justify-center overflow-hidden">
         <div className="absolute inset-0 opacity-20 grayscale bg-[url('https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&q=80&w=1600')] bg-center bg-cover"></div>
@@ -156,6 +156,9 @@ const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, com
                           <img 
                             src={product.image} 
                             alt={product.name} 
+                            width="400"
+                            height="400"
+                            loading="lazy"
                             className="object-cover w-full h-full duration-1000 transition-transform group-hover:scale-110" 
                           />
                           <div className="absolute flex flex-col gap-2 top-6 left-6">
@@ -240,6 +243,7 @@ const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, com
                           <div className="flex items-center gap-3 mt-auto">
                             <button 
                               onClick={() => navigate(`/products/${product.id}`)} 
+                              aria-label={`View details for ${product.name}`}
                               className="flex items-center justify-center flex-1 gap-2 px-4 py-4 text-[10px] font-black tracking-widest uppercase transition-all bg-white border border-slate-200 rounded-2xl dark:bg-brand-surface dark:border-white/10 text-brand-navy dark:text-white hover:bg-slate-50 dark:hover:bg-white/5 group/btn"
                             >
                               Details <ArrowRight size={14} className="transition-transform group-hover/btn:translate-x-1" />

@@ -168,6 +168,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
             <div className={`flex items-center space-x-4 border-l pl-6 ${scrolled ? 'border-slate-200 dark:border-white/10' : 'border-white/20'}`}>
               <button 
                 onClick={toggleTheme}
+                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
                 className={`p-2.5 rounded-xl transition-all duration-300 ${
                   scrolled 
                     ? 'hover:bg-slate-100 dark:hover:bg-white/5 text-slate-500 dark:text-slate-400' 
@@ -182,6 +183,7 @@ const Navbar = ({ darkMode, toggleTheme }) => {
                 href={googleMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Visit our store on Google Maps"
                 className={`flex items-center gap-2 px-7 py-3 rounded-2xl font-black text-[10px] uppercase tracking-[0.2em] transition-all shadow-xl group overflow-hidden relative ${
                  scrolled 
                   ? 'bg-brand-red text-white hover:bg-red-700 shadow-brand-red/20' 
@@ -200,12 +202,14 @@ const Navbar = ({ darkMode, toggleTheme }) => {
           <div className="flex items-center space-x-2 md:hidden">
              <button 
                 onClick={toggleTheme}
+                aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
                 className={`p-2.5 rounded-xl ${scrolled ? 'text-slate-600 dark:text-white bg-slate-50 dark:bg-white/5' : 'text-white bg-white/20'}`}
               >
                 {darkMode ? <Sun size={20} className="text-brand-gold" /> : <Moon size={20} />}
               </button>
             <button 
               onClick={() => setIsOpen(!isOpen)}
+              aria-label={isOpen ? "Close menu" : "Open menu"}
               className={`p-2.5 rounded-xl transition-all ${scrolled ? 'text-brand-navy dark:text-white bg-slate-50 dark:bg-white/5' : 'text-white bg-white/20'}`}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}

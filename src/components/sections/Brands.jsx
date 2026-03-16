@@ -59,6 +59,9 @@ const Brands = () => {
               <img
                 src={brand.logo}
                 alt={brand.name}
+                width="160"
+                height="80"
+                loading="lazy"
                 className="object-contain w-full h-full max-h-16 dark:brightness-0 dark:invert"
               />
             </div>

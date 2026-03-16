@@ -82,6 +82,9 @@ const ProductDetails = ({ onEnquire, compareList = [], onToggleCompare }) => {
               <img 
                 src={product.image} 
                 alt={product.name} 
+                width="800"
+                height="1000"
+                loading="lazy"
                 className="object-cover w-full h-full"
               />
               {hasOffer && (
@@ -92,6 +95,7 @@ const ProductDetails = ({ onEnquire, compareList = [], onToggleCompare }) => {
               )}
               <button 
                 onClick={() => onToggleCompare(product)}
+                aria-label={isComparing ? "Remove from comparison" : "Add to comparison"}
                 className={`absolute top-6 right-6 w-12 h-12 rounded-full flex items-center justify-center transition-all duration-300 border shadow-lg ${
                   isComparing 
                   ? 'bg-brand-gold border-brand-gold text-brand-navy scale-110' 
@@ -199,7 +203,10 @@ const ProductDetails = ({ onEnquire, compareList = [], onToggleCompare }) => {
                 <div className="flex items-center w-full gap-3 sm:w-auto">
                    {/* Share Button (Compact) */}
                    <div className="relative group/share">
-                     <button className="flex items-center justify-center w-12 h-12 transition-all border border-transparent rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-500 hover:text-brand-red hover:border-brand-red/20">
+                     <button 
+                       aria-label="Share product"
+                       className="flex items-center justify-center w-12 h-12 transition-all border border-transparent rounded-2xl bg-slate-100 dark:bg-white/5 text-slate-500 hover:text-brand-red hover:border-brand-red/20"
+                     >
                         <Share2 size={20} />
                      </button>
                      <div className="absolute right-0 z-30 flex gap-2 p-2 mb-4 transition-all origin-bottom-right bg-white border shadow-2xl scale-0 bottom-full group-hover/share:scale-100 dark:bg-brand-surface border-slate-200 dark:border-white/10 rounded-2xl">
