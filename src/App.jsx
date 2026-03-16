@@ -16,6 +16,7 @@ const Footer = lazy(() => import('./components/layout/Footer'));
 import { Layers, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import SEO from './components/ui/SEO';
+import PageLoader from './components/ui/PageLoader';
 
 // Lazy-loaded routes for code splitting
 const Contact = lazy(() => import('./pages/Contact'));
@@ -46,13 +47,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-// --- Full Page Loader Fallback (For Suspense) ---
-const PageLoader = () => (
-  <div className="flex flex-col items-center justify-center min-h-screen bg-white dark:bg-brand-dark">
-    <div className="w-16 h-16 border-4 rounded-full border-brand-red/20 border-t-brand-red animate-spin"></div>
-    <span className="mt-4 text-xs font-bold tracking-widest text-gray-500 uppercase dark:text-gray-400 animate-pulse">Loading Experience...</span>
-  </div>
-);
+
 
 // --- Structured Data for SEO ---
 const StructuredData = () => {
