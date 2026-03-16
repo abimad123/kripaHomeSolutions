@@ -39,7 +39,7 @@ const SEO = ({ title, description, canonical }) => {
 
     // Update Open Graph tags for better social sharing
     const ogTitle = document.querySelector('meta[property="og:title"]');
-    if (ogTitle) ogTitle.setAttribute('content', fullTitle);
+    if (ogTitle) ogTitle.setAttribute('content', title);
 
     const ogDesc = document.querySelector('meta[property="og:description"]');
     if (ogDesc) ogDesc.setAttribute('content', description);
