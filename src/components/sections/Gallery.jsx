@@ -128,19 +128,20 @@ const Gallery = () => {
               className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700"
             />
 
-            <div className="absolute inset-0 bg-gradient-to-t from-brand-navy/90 via-brand-navy/20 to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+            {/* Premium Gradient Overlay for Readability */}
+            <div className="absolute inset-0 bg-linear-to-t from-black/90 via-black/40 to-transparent opacity-70 group-hover:opacity-90 transition-opacity duration-500"></div>
 
-            <div className="absolute bottom-0 left-0 w-full p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-300">
-              <div className="flex items-center gap-2 mb-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
-                <MapPin size={14} className="text-brand-gold" />
-                <span className="text-brand-gold text-[10px] font-black uppercase tracking-widest">
+            <div className="absolute bottom-0 left-0 w-full p-8 transform translate-y-2 group-hover:translate-y-0 transition-transform duration-500">
+              <div className="flex items-center gap-2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
+                <MapPin size={14} className="text-brand-gold drop-shadow-lg" />
+                <span className="text-brand-gold text-[10px] font-black uppercase tracking-widest drop-shadow-lg">
                   Kripa Arcade
                 </span>
               </div>
-              <h3 className="text-2xl font-bold text-white font-serif mb-1 leading-tight">
+              <h3 className="text-2xl md:text-3xl font-black text-white font-serif mb-2 leading-tight [text-shadow:_0_2px_10px_rgba(0,0,0,0.8)] group-hover:text-white transition-colors">
                 {item.title}
               </h3>
-              <p className="text-slate-300 text-sm opacity-80">
+              <p className="text-slate-200 text-sm font-medium [text-shadow:_0_1px_5px_rgba(0,0,0,0.5)] group-hover:text-white transition-colors">
                 {item.subtitle}
               </p>
             </div>
