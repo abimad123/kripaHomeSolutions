@@ -1,10 +1,5 @@
 import React from 'react';
 import { DotLottieReact } from "@lottiefiles/dotlottie-react";
-
-/**
- * Premium Page Loader component using Lottie animation
- * Centered, responsive, and dark-mode compatible
- */
 const PageLoader = () => (
   <div className="flex flex-col items-center justify-center min-h-screen transition-colors duration-700 bg-white dark:bg-brand-dark">
     <div className="relative w-48 h-48 md:w-64 md:h-64">

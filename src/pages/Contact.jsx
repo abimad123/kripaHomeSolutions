@@ -6,6 +6,7 @@ import SEO from '../components/ui/SEO';
 
 const Contact = ({ prefill = '' }) => {
   const [formStatus, setFormStatus] = useState('idle');
+  const [customSubject, setCustomSubject] = useState('');
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -13,7 +14,6 @@ const Contact = ({ prefill = '' }) => {
     message: prefill
   });
 
-  // Update message if prefill changes (e.g. user navigates to contact again with different product)
   useEffect(() => {
     if (prefill) {
       setFormData(prev => ({ ...prev, message: prefill }));
@@ -22,12 +22,14 @@ const Contact = ({ prefill = '' }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const finalSubject = formData.subject === 'Other' ? customSubject : formData.subject;
+    console.log({ ...formData, subject: finalSubject });
     setFormStatus('submitting');
     setTimeout(() => setFormStatus('success'), 1500);
   };
 
   return (
-    <Section id="contact" className="relative py-16 overflow-hidden bg-white dark:bg-black md:py-32">
+    <Section id="contact" className="relative pt-10 pb-16 overflow-hidden bg-white dark:bg-black md:pt-16 md:pb-24">
       <SEO 
         title="Contact Kripa Home Solutions | Showroom in Kollam"
         description="Contact Kripa Home Solutions in Kollam for enquiries about modular kitchens, sanitaryware, paints, and building materials. Visit our showroom in Puthoor."
@@ -75,17 +77,15 @@ const Contact = ({ prefill = '' }) => {
             </div>
           </div>
 
-          <div className="relative overflow-hidden border h-80 rounded-[3rem] border-slate-200 dark:border-white/10 shadow-3xl">
-            <img src="https://images.unsplash.com/photo-1524661135-423995f22d0b?auto=format&fit=crop&q=80&w=1200" alt="Map Location" className="object-cover w-full h-full grayscale brightness-75" />
-            <div className="absolute inset-0 flex items-center justify-center">
-              <div className="bg-white/90 dark:bg-black/80 backdrop-blur-xl p-6 rounded-[2rem] border border-white/20 shadow-2xl flex items-center gap-4">
-                <div className="flex items-center justify-center text-white rounded-full shadow-lg w-14 h-14 bg-brand-red"><MapPin size={24} /></div>
-                <div>
-                  <p className="text-sm font-black tracking-widest uppercase text-brand-navy dark:text-white">Kripa Arcade</p>
-                  <p className="text-xs font-bold text-slate-500">Puthoor, Kottarakkara, Kollam, Kerala</p>
-                </div>
-              </div>
-            </div>
+          <div className="relative overflow-hidden border h-90 rounded-[3rem] border-slate-200 dark:border-white/10 shadow-3xl">
+            <iframe
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4082.456026641585!2d76.70490057920182!3d9.046306314825179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b060f813d779747%3A0xcae7912244aba76e!2sKripa%20Home%20Solutions!5e1!3m2!1sen!2sin!4v1773682080953!5m2!1sen!2sin"
+              className="absolute inset-0 w-full h-full border-0"
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            ></iframe>
+            <div className="absolute inset-0 flex items-center justify-center pointer-events-none"></div>
           </div>
         </div>
 
@@ -110,18 +110,35 @@ const Contact = ({ prefill = '' }) => {
                       <input required type="email" placeholder="rahul@example.com" value={formData.email} onChange={(e) => setFormData({ ...formData, email: e.target.value })} className="w-full font-medium transition-all outline-none px-7 py-5 rounded-2xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/5 focus:border-brand-red dark:text-white placeholder:text-slate-300" />
                     </div>
                   </div>
+
                   <div className="space-y-3">
                     <label className="ml-2 text-xs font-black tracking-[0.2em] uppercase text-slate-400">Subject</label>
                     <select value={formData.subject} onChange={(e) => setFormData({ ...formData, subject: e.target.value })} className="w-full font-bold transition-all appearance-none outline-none px-7 py-5 rounded-2xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/5 focus:border-brand-red dark:text-white">
                       <option>Product Specifications</option>
                       <option>Bulk Project Quote</option>
                       <option>Showroom Appointment</option>
+                      <option>Other</option>
                     </select>
                   </div>
+
+                  {formData.subject === 'Other' && (
+                    <div className="space-y-3">
+                      <label className="ml-2 text-xs font-black tracking-[0.2em] uppercase text-slate-400">Custom Subject</label>
+                      <input
+                        type="text"
+                        placeholder="Enter your subject..."
+                        value={customSubject}
+                        onChange={(e) => setCustomSubject(e.target.value)}
+                        className="w-full font-medium transition-all outline-none px-7 py-5 rounded-2xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/5 focus:border-brand-red dark:text-white placeholder:text-slate-300"
+                      />
+                    </div>
+                  )}
+
                   <div className="space-y-3">
                     <label className="ml-2 text-xs font-black tracking-[0.2em] uppercase text-slate-400">Project Details</label>
                     <textarea required rows={5} placeholder="Tell us about your requirements..." value={formData.message} onChange={(e) => setFormData({ ...formData, message: e.target.value })} className="w-full font-medium leading-relaxed transition-all resize-none outline-none px-7 py-5 rounded-2xl bg-slate-50 dark:bg-black/50 border border-slate-200 dark:border-white/5 focus:border-brand-red dark:text-white placeholder:text-slate-300"></textarea>
                   </div>
+
                   <button disabled={formStatus === 'submitting'} type="submit" className="w-full group relative py-6 bg-brand-red text-white font-black rounded-2xl overflow-hidden shadow-2xl flex items-center justify-center gap-4 text-sm tracking-[0.2em]">
                     <span>{formStatus === 'submitting' ? 'PROCESSING...' : 'SUBMIT REQUEST'}</span>
                     <Send size={20} />

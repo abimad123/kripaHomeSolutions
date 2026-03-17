@@ -13,9 +13,6 @@ const Hero = () => {
     target: containerRef,
     offset: ["start start", "end start"]
   });
-
-  // Calculate dynamic scale and Y position based on scroll progress
-  // Image will scale from 1 to 1.15 and move down slightly for a parallax effect
   const bgScale = useTransform(scrollYProgress, [0, 1], [1, 1.15]);
   const bgY = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   // Opacity fades out slightly as we scroll down

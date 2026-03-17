@@ -16,7 +16,7 @@ const About = () => {
         <div className="absolute inset-0 z-0">
           <img
             src="https://images.unsplash.com/photo-1497366216548-37526070297c?q=80&w=2000&auto=format&fit=crop"
-            alt="Kripa Arcade Interior"
+            alt="Kripa Home Solutions Interior"
             className="object-cover w-full h-full grayscale opacity-30 dark:opacity-20"
           />
           <div className="absolute inset-0 bg-gradient-to-b from-white dark:from-brand-dark via-transparent to-white dark:to-brand-dark"></div>
@@ -66,9 +66,9 @@ const About = () => {
           >
             <div className="relative z-10 rounded-[3rem] overflow-hidden shadow-2xl border-8 border-white dark:border-brand-surface">
               <img
-                src="https://images.unsplash.com/photo-1541888946425-d81bb19480c5?q=80&w=1200&auto=format&fit=crop"
+                src="build2.jpg"
                 alt="Construction History"
-                className="w-full aspect-4/5 object-cover"
+                className="w-full aspect-1/1 object-cover"
               />
             </div>
             {/* Year Badge */}
@@ -90,7 +90,7 @@ const About = () => {
                 Founded in 1995, Kripa Home Solutions began as a humble hardware store with a singular vision: to provide Kerala with the highest quality building materials available in the global market.
               </p>
               <p className="text-lg leading-relaxed text-slate-600 dark:text-slate-400">
-                Today, Kripa Arcade stands as a landmark of modern retail, spanning thousands of square feet of curated showroom space. We have evolved from a local supplier to a state-of-the-art solution provider for architects, builders, and discerning homeowners.
+                Today, Kripa Home Solutions stands as a landmark of modern retail, spanning thousands of square feet of curated showroom space. We have evolved from a local supplier to a state-of-the-art solution provider for architects, builders, and discerning homeowners.
               </p>
             </div>
 
@@ -174,10 +174,10 @@ const About = () => {
 
       {/* Showroom Infrastructure Showcase */}
       <section className="relative py-32 bg-slate-100 dark:bg-brand-navy">
-        <div className="absolute inset-0 opacity-70 dark:opacity-70 bg-[url('https://images.unsplash.com/photo-1600585154340-be6161a56a0c?auto=format&fit=crop&q=80&w=1600')] bg-fixed bg-center"></div>
+        <div className="absolute inset-0 opacity-40 dark:opacity-70 bg-[url('build10.jpg')] bg-fixed bg-center"></div>
         <div className="relative z-10 px-4 mx-auto text-center max-w-7xl">
           <Store size={48} className="mx-auto mb-8 text-brand-gold" />
-          <h2 className="mb-8 text-4xl font-serif font-black md:text-6xl text-brand-navy dark:text-black">The Kripa Arcade Experience</h2>
+          <h2 className="mb-8 text-4xl font-serif font-black md:text-6xl text-brand-navy dark:text-black">The Kripa Home Solutions Experience</h2>
           <p className="max-w-3xl mx-auto mb-16 text-xl leading-relaxed text-slate-600 dark:text-black">
             Our flagship showroom is designed to be an experiential hub. Walk through live modular kitchen setups, test the latest architectural hardware, and visualize your walls with our master paint studios.
           </p>

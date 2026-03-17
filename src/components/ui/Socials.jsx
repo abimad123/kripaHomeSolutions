@@ -9,7 +9,7 @@ const reels = [
   { id: 3, type: 'instagram', views: '8.9K', likes: '950', thumb: 'https://images.unsplash.com/photo-1558002038-1091a1661116?auto=format&fit=crop&q=80&w=400', caption: 'The future of security: Smart Fingerprint Locks at Kripa.' },
   { id: 4, type: 'facebook', views: '5.2K', likes: '420', thumb: 'https://images.unsplash.com/photo-1620626011761-996317b8d101?auto=format&fit=crop&q=80&w=400', caption: 'Luxury Sanitaryware collection now in stock at Kochi Showroom.' },
   { id: 5, type: 'instagram', views: '22K', likes: '2.5K', thumb: 'https://images.unsplash.com/photo-1584622650111-993a426fbf0a?auto=format&fit=crop&q=80&w=400', caption: 'Matte black or Chrome? Tell us your favorite bathroom finish below!' },
-  { id: 6, type: 'youtube', views: '102K', likes: '12K', thumb: 'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=400', caption: 'Inside Kripa Arcade: A Virtual Walkthrough' },
+  { id: 6, type: 'youtube', views: '102K', likes: '12K', thumb: 'https://images.unsplash.com/photo-1560185007-cde436f6a4d0?auto=format&fit=crop&q=80&w=400', caption: 'Inside Kripa Home Solutions: A Virtual Walkthrough' },
   { id: 7, type: 'instagram', views: '15.6K', likes: '1.8K', thumb: 'https://images.unsplash.com/photo-1530124566582-a618bc2615dc?auto=format&fit=crop&q=80&w=400', caption: 'Architectural hardware that makes a statement. #LuxuryHome' },
   { id: 8, type: 'facebook', views: '3.1K', likes: '280', thumb: 'https://images.unsplash.com/photo-1589939705384-5185137a7f0f?auto=format&fit=crop&q=80&w=400', caption: 'Experience the magic of Asian Paints textures.' },
 ];

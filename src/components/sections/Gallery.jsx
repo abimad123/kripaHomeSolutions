@@ -24,7 +24,7 @@ const galleryItems = [
   {
     id: 3,
     src: '/build2.jpg',
-    title: 'Kripa Arcade Exterior',
+    title: 'Kripa Home Solutions Exterior',
     subtitle: 'Our Landmark Showroom',
     width: 'w-[600px]',
   },
@@ -37,7 +37,7 @@ const galleryItems = [
   },
   {
     id: 5,
-    src: '/build5.jpg',
+    src: '/k3.jpg',
     title: 'Award Ceremony',
     subtitle: 'Celebrating Excellence with Partners',
     width: 'w-[400px]',
@@ -45,8 +45,8 @@ const galleryItems = [
   {
     id: 6,
     src: '/k1.jpg',
-    title: 'Client Meet',
-    subtitle: 'Consulting with Experts',
+    title: 'Award Ceremony',
+    subtitle: 'Celebrating Excellence with Partners',
     width: 'w-[350px]',
   },
   {
@@ -135,7 +135,7 @@ const Gallery = () => {
               <div className="flex items-center gap-2 mb-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300 delay-100">
                 <MapPin size={14} className="text-brand-gold drop-shadow-lg" />
                 <span className="text-brand-gold text-[10px] font-black uppercase tracking-widest drop-shadow-lg">
-                  Kripa Arcade
+                  Kripa Home Solutions
                 </span>
               </div>
               <h3 className="text-2xl md:text-3xl font-black text-white font-serif mb-2 leading-tight [text-shadow:_0_2px_10px_rgba(0,0,0,0.8)] group-hover:text-white transition-colors">

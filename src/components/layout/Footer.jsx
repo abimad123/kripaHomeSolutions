@@ -132,7 +132,7 @@ const Footer = () => {
                   <MapPin size={20} />
                 </div>
                 <span className="leading-relaxed transition-colors group-hover:text-white">
-                  Kripa Arcade, Puthoor,<br/>Kollam, Kerala 691507
+                  Kripa Home Solutions, Puthoor,<br/>Kollam, Kerala 691507
                 </span>
               </li>
               <li className="flex items-center gap-4 transition-all cursor-pointer group">
