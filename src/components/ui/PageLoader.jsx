@@ -15,9 +15,6 @@ const PageLoader = () => (
     </div>
 
     <div className="flex flex-col items-center mt-8">
-      <span className="text-xs font-black tracking-[0.4em] text-slate-400 uppercase animate-pulse">
-        Preparing your showroom experience
-      </span>
       <div className="mt-4 flex gap-1">
         <div className="w-1 h-1 rounded-full bg-brand-red animate-bounce" style={{ animationDelay: '0s' }}></div>
         <div className="w-1 h-1 rounded-full bg-brand-red animate-bounce" style={{ animationDelay: '0.2s' }}></div>

@@ -18,7 +18,7 @@ const Testimonials = () => {
       </div>
 
       <div className="max-w-[1400px] mx-auto px-4 relative z-10">
-        <div className="flex flex-col items-end justify-between gap-8 px-2 mb-16 md:flex-row">
+        <div className="flex flex-col items-start justify-between gap-8 px-2 mb-16 md:flex-row">
           <div className="max-w-2xl">
             <div className="flex items-center gap-2 mb-3">
               <span className="w-10 h-px bg-brand-red"></span>

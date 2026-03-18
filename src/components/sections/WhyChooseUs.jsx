@@ -57,7 +57,7 @@ const WhyChooseUs = () => {
       </motion.div>
 
       <div ref={containerRef} className="relative z-10 max-w-[1400px] mx-auto">
-        <div className="flex flex-col items-end justify-between gap-8 px-2 mb-16 md:flex-row">
+        <div className="flex flex-col items-start justify-between gap-8 px-2 mb-16 md:flex-row">
             <div className="max-w-2xl">
                 <div className="flex items-center gap-2 mb-3">
                     <span className="w-10 h-px bg-brand-red"></span>
@@ -69,7 +69,7 @@ const WhyChooseUs = () => {
                 </h2>
             </div>
             
-            <p className="max-w-md pl-6 mb-1 text-sm font-medium leading-relaxed border-l-2 text-slate-600 dark:text-slate-400 border-brand-red">
+            <p className="max-w-md pl-6 mb-1 text-sm font-medium leading-relaxed border-l-2 text-slate-600 dark:text-slate-400 border-brand-red md:ml-0">
                Beyond selling products, we build partnerships. Discover why thousands of homeowners choose us for their dream projects.
             </p>
         </div>

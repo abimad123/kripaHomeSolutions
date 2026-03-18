@@ -73,7 +73,7 @@ const Gallery = () => {
 
   return (
     <Section id="gallery" className="relative overflow-hidden">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-8 px-2">
+      <div className="flex flex-col md:flex-row justify-between items-start mb-12 gap-8 px-2">
         <div className="max-w-2xl">
           <div className="flex items-center gap-2 mb-3">
             <span className="h-px w-10 bg-brand-red"></span>

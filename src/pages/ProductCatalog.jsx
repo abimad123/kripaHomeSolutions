@@ -12,9 +12,10 @@ const sortOptions = ["Newest", "Price: Low to High", "Price: High to Low", "Rati
 const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, compareList, onToggleCompare }) => {
   const [searchParams] = useSearchParams();
   const initialSearch = searchParams.get('search') || '';
+  const categoryParam = searchParams.get('category');
   
   const [searchTerm, setSearchTerm] = useState(initialSearch);
-  const [selectedCategory, setSelectedCategory] = useState(initialCategory);
+  const [selectedCategory, setSelectedCategory] = useState(categoryParam || initialCategory);
   const [sortBy, setSortBy] = useState('Newest');
   const [viewMode, setViewMode] = useState('grid');
   const [priceRange, setPriceRange] = useState(500);
@@ -32,6 +33,13 @@ const ProductCatalog = ({ initialCategory = 'All', onViewDetails, onEnquire, com
       setSelectedCategory(initialCategory);
     }
   }, [initialCategory]);
+
+  useEffect(() => {
+    const cat = searchParams.get('category');
+    if (cat) {
+      setSelectedCategory(cat);
+    }
+  }, [searchParams]);
 
   const filteredAndSortedProducts = useMemo(() => {
     let result = catalogProducts.filter(product => {

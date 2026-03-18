@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Section } from '../ui/Section';
 import { motion } from 'framer-motion';
 import { Wrench, PaintBucket, Utensils, Lightbulb, Bath, BrickWall, ArrowRight, ArrowUpRight } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
 const categoriesData = [
   {
@@ -42,8 +43,8 @@ const categoriesData = [
   {
     id: '6',
     name: 'All',
-    displayName: 'Building Materials',
-    description: 'Foundational strength for lasting structures.',
+    displayName: 'All Products',
+    description: 'Browse all our premium products.',
     image: 'https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?auto=format&fm=webp&fit=crop&q=80&w=800'
   }
 ];
@@ -74,6 +75,7 @@ const itemVariants = {
 
 const Categories = ({ onCategorySelect }) => {
   const [loadedImages, setLoadedImages] = useState({});
+  const navigate = useNavigate();
 
   const handleImageLoad = (id) => {
     setLoadedImages(prev => ({ ...prev, [id]: true }));
@@ -81,7 +83,7 @@ const Categories = ({ onCategorySelect }) => {
 
   return (
     <Section id="categories" className="relative">
-      <div className="flex flex-col items-end justify-between gap-8 px-2 mb-12 md:flex-row">
+      <div className="flex flex-col items-start justify-between gap-8 px-2 mb-12 md:flex-row">
         <div className="max-w-2xl">
           <div className="flex items-center gap-2 mb-3">
             <span className="w-10 h-px bg-brand-red"></span>
@@ -106,7 +108,13 @@ const Categories = ({ onCategorySelect }) => {
           <motion.div
             key={category.id}
             variants={itemVariants}
-            onClick={() => onCategorySelect?.(category.name)}
+            onClick={() => {
+              if (onCategorySelect) {
+                onCategorySelect(category.name);
+              } else {
+                navigate(`/products?category=${category.name}`);
+              }
+            }}
             className={`group relative rounded-[2rem] overflow-hidden cursor-pointer shadow-md hover:shadow-2xl transition-all duration-500 
               ${index === 0 || index === 3 || index === 5 ? 'lg:col-span-2' : 'lg:col-span-1'}
             `}

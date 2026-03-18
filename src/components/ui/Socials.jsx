@@ -44,7 +44,7 @@ const Socials = () => {
       </div>
 
       <div className="relative z-10">
-        <div className="flex flex-col items-end justify-between gap-8 mb-16 md:flex-row">
+        <div className="flex flex-col items-start justify-between gap-8 mb-16 md:flex-row">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-12 h-1 rounded-full bg-brand-gold"></div>
@@ -134,7 +134,7 @@ const Socials = () => {
         </div>
 
         {/* Social Bar */}
-        <div className="flex flex-wrap justify-center gap-8 mt-12 md:gap-16">
+        <div className="flex flex-wrap justify-start gap-8 mt-12 md:gap-16">
           {[
             { name: 'Instagram', handle: '@kripahomesolutions', icon: <Instagram />, color: 'hover:text-pink-500', glow: 'hover:shadow-pink-500/20' },
             { name: 'YouTube', handle: 'Kripa Home Solutions', icon: <Youtube />, color: 'hover:text-red-600', glow: 'hover:shadow-red-600/20' },
