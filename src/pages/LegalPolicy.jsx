@@ -127,26 +127,7 @@ const PrivacyPolicy = () => {
               </div>
             </div>
 
-            {/* Premium Contact Section */}
-            <div className="bg-linear-to-br from-brand-navy to-black p-12 md:p-24 rounded-[4rem] border border-white/10 shadow-3xl relative overflow-hidden">
-              <div className="absolute top-0 right-0 w-96 h-96 bg-brand-red/20 rounded-full blur-[120px] -mr-48 -mt-48"></div>
-              <div className="absolute bottom-0 left-0 w-64 h-64 bg-brand-gold/10 rounded-full blur-[100px] -ml-32 -mb-32"></div>
-              
-              <div className="relative z-10 flex flex-col items-center text-center">
-                <h3 className="text-4xl md:text-5xl font-serif font-black text-white mb-8">
-                  Security Concierge
-                </h3>
-                <p className="text-slate-400 max-w-2xl mb-16 text-lg md:text-xl leading-relaxed">
-                  If you have any questions about this privacy policy or our data practices, we are here to help. Reach out to us through any of our official channels.
-                </p>
-                
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 w-full max-w-5xl">
-                  <ContactInfoBox icon={<Mail size={24} />} label="Priority Email" value="kripahomesolutionsptr@gmail.com" />
-                  <ContactInfoBox icon={<Phone size={24} />} label="Concierge Line" value="+91 8606 123467" />
-                  <ContactInfoBox icon={<MapPin size={24} />} label="Experience Center" value="Puthoor, Kollam" />
-                </div>
-              </div>
-            </div>
+           
           </div>
         </div>
       </Section>
